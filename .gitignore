@@ -11,3 +11,12 @@
 *.lai
 *.la
 *.a
+
+# Folders to ignore
+Debug/
+Aegle/Debug/
+Doc/
+
+# Visual Studio files
+*.suo
+*.opensdf
