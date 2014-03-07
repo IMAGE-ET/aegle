@@ -11,7 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\dicom\DICOM.cpp" />
+    <ClCompile Include="src\dicom\MRIDICOM.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\util\dicomparser\DICOMParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dicom\DICOM.h" />
+    <ClInclude Include="src\dicom\MRIDICOM.h" />
+    <ClInclude Include="src\util\dicomparser\DICOMParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1B4A0EAC-B003-4602-9AA8-7F46314B4D0D}</ProjectGuid>
@@ -47,6 +55,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>.\Aegle\src\util\dicomparser;.\Aegle\src\dicom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
