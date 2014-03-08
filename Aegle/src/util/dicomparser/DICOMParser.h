@@ -24,6 +24,8 @@ class DICOMParser {
 		bool parse(string fileName, DICOM *d);
 
 	private:
+
+		bool parsePreamble(ifstream *f, DICOM *d);
 };
 
 #endif /*DICOMPARSER_H*/

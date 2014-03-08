@@ -5,6 +5,9 @@ Created February 27th 2014
 */
 
 #include <iostream>
+#include <string>
+
+#include "dicom\DICOM.h"
 
 using namespace std;
 
@@ -21,6 +24,8 @@ int main()
 	cout << "1. Sarah's Sandbox\n" << endl << endl;
 	cin >> in;
 
+	cout << endl;
+
 	switch(in) {
 	case 1:
 		sarahSandbox();
@@ -36,4 +41,14 @@ int main()
 void sarahSandbox() 
 {
 	cout << "Hello Welcome to Sarah's Sandbox!" << endl;
+
+	string fileName;
+	DICOM d;
+
+	cout << "Please enter the location of a Dicom file" << endl;
+	cin.ignore();
+	getline(cin, fileName);
+	cout << "Attemping to parse: " << fileName << endl;
+
+	d.parseFromFile(fileName);
 }

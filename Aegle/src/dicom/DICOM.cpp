@@ -8,7 +8,6 @@ Created March 6th 2014
 
 DICOM::DICOM() 
 {
-
 }
 
 DICOM::~DICOM() 
