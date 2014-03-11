@@ -15,7 +15,8 @@ using namespace std;
 
 class DICOM;
 
-class DICOMParser {
+class DICOMParser 
+{
 	public:
 
 		DICOMParser();

@@ -13,19 +13,24 @@ Created March 6th 2014
 
 using namespace std;
 
-class DICOM {
+class DICOM 
+{
 	public:
 
 		DICOM();
 		~DICOM();
 
+		string getPreamble();
 		int getSizeOfPreamble();
+
+		void setPreamble(char *pa);
 
 		bool parseFromFile(string fileName);
 
 	private:
 
 		static const int sizeOfPreamble = 128;
+		string preamble;
 };
 
 #endif /*DICOM_H*/

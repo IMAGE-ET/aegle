@@ -7,6 +7,10 @@ Created March 6th 2014
 #include "DICOMParser.h"
 #include "../../dicom/DICOM.h"
 
+/*-----------------------------------------------------------------------------
+CONSTRUCTORS AND DESTRUCTORS
+-----------------------------------------------------------------------------*/
+
 DICOMParser::DICOMParser() 
 {
 		
@@ -16,6 +20,10 @@ DICOMParser::~DICOMParser()
 {
 		
 }
+
+/*-----------------------------------------------------------------------------
+OTHER
+-----------------------------------------------------------------------------*/
 
 bool DICOMParser::parse(string fileName, DICOM *d)
 {
@@ -50,17 +58,22 @@ bool DICOMParser::parsePreamble(ifstream *f, DICOM *d)
 
 	// get the size of the prefix and preamble and set up a buffer
 	int size = (*d).getSizeOfPreamble();
-	char *buff = new char[size + 4];
+	char *preambleBuff = new char[size];
+	char *prefixBuff = new char[4];
 
 	// read in the preable and prefix
-	f->read(buff, size + 4);
+	f->read(preambleBuff, size);
+	f->read(prefixBuff, 4);
 
 	// verify prefix
-	if (buff[size] != 'D' || buff[size + 1] != 'I' || buff[size + 2] != 'C' || buff[size + 3] != 'M') 
+	if (prefixBuff[0] != 'D' || prefixBuff[1] != 'I' || prefixBuff[2] != 'C' || prefixBuff[3] != 'M') 
 	{
-		cout << "Prefix not found: " << buff[size] << buff[size + 1] << buff[size + 2] << buff[size + 3] << endl;
+		cout << "Prefix not found: " << prefixBuff[0] << prefixBuff[1] << prefixBuff[2] << prefixBuff[3] << endl;
 		return false;
 	}
+
+	// set preamble
+	d->setPreamble(preambleBuff);
 
 	return true;
 }

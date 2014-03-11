@@ -9,7 +9,8 @@ Created March 6th 2014
 
 #include "DICOM.h"
 
-class MRIDICOM: public DICOM {
+class MRIDICOM: public DICOM 
+{
 	public:
 
 		MRIDICOM();
