@@ -1,6 +1,9 @@
 /**
 @file STL.H
 
+STL class. Encompasses everything needed to 
+write out an STL file. 
+
 Created March 11th 2014
 */
 

@@ -1,6 +1,9 @@
 /**
 @file STLWriterASCII.h
 
+Derived class of STLWriter. Writes out given STL objects
+in the STL ASCII format. 
+
 Created March 11th 2014
 */
 

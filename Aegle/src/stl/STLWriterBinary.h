@@ -1,6 +1,9 @@
 /**
 @file STLWriterBinary.h
 
+Derived class of STLWriter. Writes out a STL object
+as a STL binary file.
+
 Created March 11th 2014
 */
 

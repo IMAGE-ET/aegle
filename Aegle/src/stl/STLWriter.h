@@ -10,6 +10,9 @@ Created March 11th 2014
 #include "Facet.h"
 using namespace std;
 
+/* Base class for writing out STL files.
+*/
+
 class STLWriter 
 {
 public:
@@ -20,8 +23,10 @@ public:
 
     ~STLWriter();
 
+    // Helper function to verify the STL is appropriate for writing
     bool validateSTL(const STL&);
 
+    // Function to be implemented by derived classes
     virtual bool writeSTL(const STL&) = 0;
 
 private:
@@ -31,7 +36,6 @@ private:
 
     string filename_;
     string filedir_;
-
 };
 
 #endif /* STLWRITER_H */

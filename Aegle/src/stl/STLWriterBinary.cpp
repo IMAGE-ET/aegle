@@ -7,8 +7,7 @@ Created March 11th 2014
 #include "STLWriterBinary.h"
 
 STLWriterBinary::STLWriterBinary()
-{
-}
+{}
 
 bool STLWriterBinary::writeSTL(const STL&)
 {

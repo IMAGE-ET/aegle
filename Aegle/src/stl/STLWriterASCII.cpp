@@ -7,8 +7,7 @@ Created March 11th 2014
 #include "STLWriterASCII.h"
 
 STLWriterASCII::STLWriterASCII()
-{
-}
+{}
 
 bool STLWriterASCII::writeSTL(const STL&)
 {
