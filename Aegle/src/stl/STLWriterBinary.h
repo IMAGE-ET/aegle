@@ -13,6 +13,15 @@ using namespace std;
 
 class STLWriterBinary : STLWriter
 {
+public:
+    STLWriterBinary();
+    bool writeSTL(const STL&);
+
+private:
+    bool writeSTLHeader(const STL&);
+    bool writeSTLFacets(const STL&);
+    bool writeSTLFacet(const Facet&);
+
 };
 
 #endif STLWRITER_BINARY_H

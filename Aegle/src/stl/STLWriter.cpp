@@ -24,4 +24,5 @@ STLWriter::~STLWriter()
 
 bool STLWriter::validateSTL(const STL&)
 {
+    return false;
 }

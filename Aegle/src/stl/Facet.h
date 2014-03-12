@@ -25,13 +25,13 @@ public:
     ~Facet();
 
 private:
-    const int VECTOR_SIZE = 3;
-    const int NUM_VERTICES = 3;
-    const int NUM_COORDINATES = 3;
+    static const int VECTOR_SIZE = 3;
+    static const int NUM_VERTICES = 3;
+    static const int NUM_COORDINATES = 3;
 
-    const int X_INDEX = 0;
-    const int Y_INDEX = 1;
-    const int Z_INDEX = 2;
+    static const int X_INDEX = 0;
+    static const int Y_INDEX = 1;
+    static const int Z_INDEX = 2;
 
     float* normal; // a vector of normals
     vertex* vertices; // an array of <x,y,z> coordinates        

@@ -15,3 +15,8 @@ Facet::Facet()
     vertices = new vertex[NUM_VERTICES];
 };
 
+Facet::~Facet()
+{
+    delete normal;
+    delete vertices;
+}
