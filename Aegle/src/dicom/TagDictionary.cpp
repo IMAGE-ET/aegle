@@ -6,6 +6,8 @@ Created March 10th 2014
 
 #include "TagDictionary.h"
 
+std::map<char,Tag_Description> TagDictionary::dictionary_;
+
 /*-----------------------------------------------------------------------------
 CONSTRUCTORS AND DESTRUCTORS
 -----------------------------------------------------------------------------*/
@@ -13,7 +15,7 @@ CONSTRUCTORS AND DESTRUCTORS
 TagDictionary::TagDictionary() 
 {
 	// check to see if dictionary has already been created
-	if (dictionary.size())
+	if (dictionary_.size())
 	{
 		// create dictionary
 	}

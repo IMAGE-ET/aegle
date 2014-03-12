@@ -31,7 +31,7 @@ string DICOM::getPreamble()
 
 int DICOM::getSizeOfPreamble() 
 {
-	return sizeOfPreamble;
+	return sizeOfPreamble_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -40,7 +40,7 @@ MUTATORS
 
 void DICOM::setPreamble(char *pa)
 {
-	preamble = string(pa, sizeOfPreamble);
+	preamble = string(pa, sizeOfPreamble_);
 }
 
 /*-----------------------------------------------------------------------------

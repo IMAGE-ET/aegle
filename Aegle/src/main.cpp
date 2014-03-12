@@ -9,8 +9,6 @@ Created February 27th 2014
 
 #include "dicom\DICOM.h"
 
-using namespace std;
-
 void sarahSandbox();
 
 /**

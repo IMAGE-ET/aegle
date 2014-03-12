@@ -10,8 +10,7 @@ Created March 6th 2014
 #include <string>
 
 #include "../util/dicomparser/DICOMParser.h"
-
-using namespace std;
+#include "TagDictionary.h"
 
 class DICOM 
 {
@@ -29,7 +28,7 @@ class DICOM
 
 	private:
 
-		static const int sizeOfPreamble = 128;
+		static const int sizeOfPreamble_ = 128;
 		string preamble;
 };
 

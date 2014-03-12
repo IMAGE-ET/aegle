@@ -1,7 +1,7 @@
 /**
 @file TagDictionary.h
 
-Created March 10Sth 2014
+Created March 10 th 2014
 */
 
 #ifndef TAGDICTIONARY_H
@@ -9,7 +9,7 @@ Created March 10Sth 2014
 
 #include <map>
 
-using namespace std;
+#include "Tag.h"
 
 class TagDictionary 
 {
@@ -17,23 +17,9 @@ class TagDictionary
 
 		TagDictionary();
 
-		enum Tag
-		{
-			GROUP_LENGTH,
-			META_INFO_VERSION,
-			MEDIA_STORAGE_SOP_CLASS_UID,
-			MEDIA_STORAGE_SOP_INSTANCE_UID,
-			TRANSFER_SYNTAX_UID,
-			IMPLEMENTATION_CLASS_UID,
-			IMPLEMENTATION_VERSION_NAME,
-			SOURCE_APPLICATION_ENTITY_TITLE,
-			PRIVATE_INFO_CREATOR_UID,
-			PRIVATE_INFORMATION
-		};
-
 	private:
 
-		static map<char,Tag> dictionary;
+		static std::map<char,Tag_Description> dictionary_;
 };
 
 #endif /*TAGDICTIONARY_H*/

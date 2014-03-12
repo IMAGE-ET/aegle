@@ -39,6 +39,9 @@
     <ClCompile Include="src\dicom\TagDictionary.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
+    <ClCompile Include="src\dicom\Tag.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dicom\DICOM.h">
@@ -51,6 +54,12 @@
       <Filter>Source Files\util\dicomparser</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\TagDictionary.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\Tag.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\TagDescription.h">
       <Filter>Source Files\dicom</Filter>
     </ClInclude>
   </ItemGroup>
