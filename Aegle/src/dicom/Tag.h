@@ -17,7 +17,14 @@ class Tag
 
 		Tag();
 
+		Tag_Description getTagDescription();
+
+		void setTagDescription(Tag_Description td);
+
 	private:
+
+		Tag_Description tagDescription_;
+		int length_;
 };
 
 #endif /*TAG_H*/

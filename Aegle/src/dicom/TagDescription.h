@@ -7,7 +7,6 @@ Created March 10th 2014
 #ifndef TAGDESCRIPTION_H
 #define TAGDESCRIPTION_H
 
-
 enum Tag_Description
 {
 	ACCESSION_NUMBER,                                

@@ -10,6 +10,7 @@ Created March 10th 2014
 #include <map>
 
 #include "Tag.h"
+#include "TagDescription.h"
 
 class TagDictionary 
 {
@@ -17,9 +18,11 @@ class TagDictionary
 
 		TagDictionary();
 
+		Tag_Description search(int i);
+
 	private:
 
-		static std::map<char,Tag_Description> dictionary_;
+		static std::map<int, Tag_Description> dictionary_;
 };
 
 #endif /*TAGDICTIONARY_H*/
