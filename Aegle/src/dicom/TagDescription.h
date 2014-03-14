@@ -1,7 +1,7 @@
 /**
-@file MRIDICOM.h
+@file TagDescription.h
 
-Created March 6th 2014
+Created March 10th 2014
 */
 
 #ifndef TAGDESCRIPTION_H

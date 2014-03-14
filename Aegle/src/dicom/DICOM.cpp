@@ -23,7 +23,7 @@ DICOM::~DICOM()
 ACCESSORS
 -----------------------------------------------------------------------------*/
 
-string DICOM::getPreamble()
+std::string DICOM::getPreamble()
 {
 	return preamble;
 }
@@ -40,16 +40,9 @@ MUTATORS
 
 void DICOM::setPreamble(char *pa)
 {
-	preamble = string(pa, sizeOfPreamble_);
+	preamble = std::string(pa, sizeOfPreamble_);
 }
 
 /*-----------------------------------------------------------------------------
 OTHER
 -----------------------------------------------------------------------------*/
-
-bool DICOM::parseFromFile(string fileName)
-{
-	DICOMParser p;
-
-	return p.parse(fileName, this);
-}

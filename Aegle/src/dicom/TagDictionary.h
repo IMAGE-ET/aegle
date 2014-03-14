@@ -1,7 +1,7 @@
 /**
 @file TagDictionary.h
 
-Created March 10 th 2014
+Created March 10th 2014
 */
 
 #ifndef TAGDICTIONARY_H

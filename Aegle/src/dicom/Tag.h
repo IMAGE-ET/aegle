@@ -1,13 +1,15 @@
 /**
-@file TagDictionary.h
+@file Tag.h
 
-Created March 10 th 2014
+Created March 10th 2014
 */
 
 #ifndef TAG_H
 #define TAG_H
 
 #include <map>
+
+#include "TagDescription.h"
 
 class Tag 
 {
@@ -18,4 +20,4 @@ class Tag
 	private:
 };
 
-#endif /*TAGDICTIONARY_H*/
+#endif /*TAG_H*/

@@ -11,8 +11,6 @@ Created March 6th 2014
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class DICOM;
 
 class DICOMParser 
@@ -22,11 +20,11 @@ class DICOMParser
 		DICOMParser();
 		~DICOMParser();
 
-		bool parse(string fileName, DICOM *d);
+		bool parse(std::string fileName, DICOM *d);
 
 	private:
 
-		bool parsePreamble(ifstream *f, DICOM *d);
+		bool parsePreamble(std::ifstream *f, DICOM *d);
 };
 
 #endif /*DICOMPARSER_H*/

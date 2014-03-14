@@ -19,17 +19,15 @@ class DICOM
 		DICOM();
 		~DICOM();
 
-		string getPreamble();
+		std::string getPreamble();
 		int getSizeOfPreamble();
 
 		void setPreamble(char *pa);
 
-		bool parseFromFile(string fileName);
-
 	private:
 
 		static const int sizeOfPreamble_ = 128;
-		string preamble;
+		std::string preamble;
 };
 
 #endif /*DICOM_H*/

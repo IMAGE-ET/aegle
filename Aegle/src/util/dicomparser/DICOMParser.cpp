@@ -25,9 +25,9 @@ DICOMParser::~DICOMParser()
 OTHER
 -----------------------------------------------------------------------------*/
 
-bool DICOMParser::parse(string fileName, DICOM *d)
+bool DICOMParser::parse(std::string fileName, DICOM *d)
 {
-	ifstream f;
+	std::ifstream f;
 	f.open(fileName);
 
 	if (f.is_open())
@@ -41,18 +41,18 @@ bool DICOMParser::parse(string fileName, DICOM *d)
 	else 
 	{
 		// unable to open the designated file
-		cout << "Unable to open: " << fileName << endl;
+		std::cout << "Unable to open: " << fileName << std::endl;
 		return false;
 	}
 }
 
-bool DICOMParser::parsePreamble(ifstream *f, DICOM *d)
+bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 {
 	// check to see if null parameters where passed in
 	// if so return null
 	if (f == NULL || d == NULL) 
 	{
-		cout << "Null parameter passed in" << endl;
+		std::cout << "Null parameter passed in" << std::endl;
 		return false;
 	}
 
@@ -68,7 +68,7 @@ bool DICOMParser::parsePreamble(ifstream *f, DICOM *d)
 	// verify prefix
 	if (prefixBuff[0] != 'D' || prefixBuff[1] != 'I' || prefixBuff[2] != 'C' || prefixBuff[3] != 'M') 
 	{
-		cout << "Prefix not found: " << prefixBuff[0] << prefixBuff[1] << prefixBuff[2] << prefixBuff[3] << endl;
+		std::cout << "Prefix not found: " << prefixBuff[0] << prefixBuff[1] << prefixBuff[2] << prefixBuff[3] << std::endl;
 		return false;
 	}
 
