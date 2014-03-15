@@ -12,6 +12,7 @@ Created March 11th 2014
 #define FACET_H
 
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -21,12 +22,31 @@ typedef struct {
     float z;
 } vertex;
 
+typedef array<float,3> normal;
+typedef array<vertex,3> vertices;
+
+
 class Facet
 {
 public:
+
+    // Constructors
     Facet();
-    Facet(float* normal, vertex* vertices);
+    Facet(normal n);
+    Facet(normal normal, vertices vertices);
+    
+    // Destructors
     ~Facet();
+
+    // Accesors
+    normal getNormal() const;
+    vertices getVertices() const;
+    vertex getVertexAt(const int& i) const;
+
+    // Mutators
+    void setNormal(const normal&);
+    void setVertices(const vertices& v);
+    void setVertexAt(const vertex& v, const int& i);
 
 private:
     // Constants for Facet
@@ -34,13 +54,13 @@ private:
     static const int NUM_VERTICES = 3;
     static const int NUM_COORDINATES = 3;
 
-    static const int X_INDEX = 0;
-    static const int Y_INDEX = 1;
-    static const int Z_INDEX = 2;
+    static const int I_INDEX = 0;
+    static const int J_INDEX = 1;
+    static const int K_INDEX = 2;
 
-
-    float* normal; // a vector of normals
-    vertex* vertices; // an array of <x,y,z> coordinates        
+    // Members
+    normal normal_; // a vector of normals
+    vertices vertices_; // an array of <x,y,z> coordinates     
 };
 
 #endif /* FACET_H */
