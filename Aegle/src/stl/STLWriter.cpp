@@ -10,7 +10,8 @@ Created March 11th 2014
 STLWriter::STLWriter() : filedir_("")
 {
     time_t t = time(0);
-    struct tm* n = localtime(&t);
+    struct tm* n = new tm();
+    localtime_s(n, &t);
 
     // Use the time of construction 
     // for a unique filename
