@@ -7,8 +7,12 @@ Created March 10th 2014
 #ifndef TAGDESCRIPTION_H
 #define TAGDESCRIPTION_H
 
+/**
+ *	This enumeration contains all the possiblilites for tag description values
+*/
 enum Tag_Description
 {
+	UNKNOWN,
 	ACCESSION_NUMBER,                                
 	ACQUISITION_DATE,                               
 	ACQUISITION_MATRIX,                              

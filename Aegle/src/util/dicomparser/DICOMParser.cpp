@@ -117,14 +117,12 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	return true;
 }
 
-Tag_Description DICOMParser::toTagDescription(char a0, char a1, char a2, char a3)
+Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3)
 {
+	int tagDescription = 0x00000000;
+	tagDescription |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
 
-
-	int i = 0x00000000;
-	i |= a0 << 24 | a1 << 16 | a2 << 8 | a3;
-
-	std::cout << "Tag: " << hex(i) << std::endl;
-
-	return td_.search(i);
+	std::cout << "Tag: " << std::setfill('0') << std::hex << "0x" << std::setw(8) << tagDescription;
+	std::cout << " - " << td_.toString(tagDescription) << std::endl;
+	return td_.searchDescription(tagDescription);
 }

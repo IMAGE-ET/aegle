@@ -8,6 +8,7 @@ Created March 10th 2014
 #define TAGDICTIONARY_H
 
 #include <map>
+#include <string>
 
 #include "Tag.h"
 #include "TagDescription.h"
@@ -18,11 +19,17 @@ class TagDictionary
 
 		TagDictionary();
 
-		Tag_Description search(int i);
+		Tag_Description searchDescription(int value);
+		std::string toString(Tag_Description tagDescription);
+		std::string toString(int value);
 
 	private:
 
-		static std::map<int, Tag_Description> dictionary_;
+		void createEnumDictionary();
+		void createNameDictionary();
+
+		static std::map<int, Tag_Description> enumDictionary_;
+		static std::map<Tag_Description, std::string> nameDictionary_;
 };
 
 #endif /*TAGDICTIONARY_H*/

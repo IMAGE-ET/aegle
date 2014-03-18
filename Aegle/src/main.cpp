@@ -40,13 +40,13 @@ void sarahSandbox()
 {
 	std::cout << "Hello Welcome to Sarah's Sandbox!" << std::endl;
 
-	std::string fileName;
+	std::string fileName = "../Samples/WRIX/WRISTRIGHT/SCOUT3-PLANE/IM-0001-0001.dcm";
 	DICOM d;
 	DICOMParser dp;
 
-	std::cout << "Please enter the location of a Dicom file" << std::endl;
-	std::cin.ignore();
-	std::getline(std::cin, fileName);
+	//std::cout << "Please enter the location of a Dicom file" << std::endl;
+	//std::cin.ignore();
+	//std::getline(std::cin, fileName);
 	std::cout << "Attemping to parse: " << fileName << std::endl;
 
 	dp.parse(fileName, &d);
