@@ -18,12 +18,19 @@ class STLWriterASCII : STLWriter
 {
 public:
     STLWriterASCII();
-    bool writeSTL(const STL&);
+    STLWriterASCII(const string& filename, const string& filedir);
+    STLWriterASCII(const string& filename);
+
+    bool writeSTL(const string& filename, const STL&);
 
 private:
     bool writeSTLHeader(const STL&);
     bool writeSTLFacets(const STL&);
     bool writeSTLFacet(const Facet&);
+
+    string filename_;
+    string filedir_;
+    ofstream outputFile_;
 };
 
 #endif STLWRITER_ASCII_H

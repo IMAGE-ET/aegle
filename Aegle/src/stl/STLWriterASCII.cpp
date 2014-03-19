@@ -6,11 +6,18 @@ Created March 11th 2014
 
 #include "STLWriterASCII.h"
 
-STLWriterASCII::STLWriterASCII()
+STLWriterASCII::STLWriterASCII() : filename_(""), filedir_("")
 {}
 
-bool STLWriterASCII::writeSTL(const STL&)
+STLWriterASCII::STLWriterASCII(const string& filename, const string& filedir) : filename_(filename), filedir_(filedir)
+{}
+
+STLWriterASCII::STLWriterASCII(const string& filename) : filename_(filename), filedir_("")               
+{}
+
+bool STLWriterASCII::writeSTL(const string& filename, const STL& stl)
 {
+
     return false;
 }
 

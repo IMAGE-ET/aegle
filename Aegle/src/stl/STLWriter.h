@@ -8,6 +8,8 @@ Created March 11th 2014
 
 #include "STL.h"
 #include "Facet.h"
+#include <fstream>
+
 using namespace std;
 
 /* Base class for writing out STL files.
@@ -18,9 +20,6 @@ class STLWriter
 public:
 
     STLWriter();
-    STLWriter(string filename);
-    STLWriter(string filename, string filedir);
-
     ~STLWriter();
 
     // Helper function to verify the STL is appropriate for writing
@@ -33,9 +32,6 @@ private:
     virtual bool writeSTLHeader(const STL&) = 0;
     virtual bool writeSTLFacets(const STL&) = 0;
     virtual bool writeSTLFacet(const Facet&) = 0;
-
-    string filename_;
-    string filedir_;
 };
 
 #endif /* STLWRITER_H */
