@@ -16,6 +16,7 @@
 Debug/
 Aegle/Debug/
 Doc/
+Samples/
 
 # Visual Studio files
 *.suo

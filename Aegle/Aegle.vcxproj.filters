@@ -13,10 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\dicom">
+      <UniqueIdentifier>{4ec8bf3d-de51-40dc-a0ac-c42d1bdbd6db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{538707ad-ae4e-49d5-9e30-04375fc3a6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util\dicomparser">
+      <UniqueIdentifier>{c9b19798-0924-4c28-8476-a641c460f64a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\dicom\DICOM.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dicom\MRIDICOM.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\dicomparser\DICOMParser.cpp">
+      <Filter>Source Files\util\dicomparser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dicom\TagDictionary.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dicom\Tag.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dicom\DICOM.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\MRIDICOM.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\dicomparser\DICOMParser.h">
+      <Filter>Source Files\util\dicomparser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\TagDictionary.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\Tag.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\TagDescription.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
