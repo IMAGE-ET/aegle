@@ -26,14 +26,14 @@ CONSTRUCTORS AND DESTRUCTORS
 TagDictionary::TagDictionary() 
 {
 	// check to see if dictionaries has already been created
-	if (enumDictionary_.size())
+	if (enumDictionary_.empty())
 	{
 		// create dictionary
 		createEnumDictionary();
 	}
 
 	// check to see if dictionaries has already been created
-	if (nameDictionary_.size())
+	if (nameDictionary_.empty())
 	{
 		// create dictionary
 		createNameDictionary();

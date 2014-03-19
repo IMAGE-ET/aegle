@@ -111,7 +111,7 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	// read in the group and element
 	f->read(groupBuff, 10);
-
+	
 	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
 
 	return true;
