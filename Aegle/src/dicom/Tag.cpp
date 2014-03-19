@@ -18,7 +18,7 @@ Tag::Tag()
 ACCESSORS
 -----------------------------------------------------------------------------*/
 
-Tag_Description Tag::getTagDescription()
+Tag_Description Tag::getTagDescription() const
 {
 	return tagDescription_;
 }

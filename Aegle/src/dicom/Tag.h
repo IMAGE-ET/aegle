@@ -17,7 +17,7 @@ class Tag
 
 		Tag();
 
-		Tag_Description getTagDescription();
+		Tag_Description getTagDescription() const;
 
 		void setTagDescription(Tag_Description td);
 

@@ -1,5 +1,5 @@
 /**
-@file DICOM.h
+@file DICOM.cpp
 
 Created March 6th 2014
 */
@@ -23,15 +23,9 @@ DICOM::~DICOM()
 ACCESSORS
 -----------------------------------------------------------------------------*/
 
-std::string DICOM::getPreamble()
+std::string DICOM::getPreamble() const
 {
-	return preamble;
-}
-
-
-int DICOM::getSizeOfPreamble() 
-{
-	return sizeOfPreamble_;
+	return preamble_;
 }
 
 /*-----------------------------------------------------------------------------
@@ -40,7 +34,7 @@ MUTATORS
 
 void DICOM::setPreamble(char *pa)
 {
-	preamble = std::string(pa, sizeOfPreamble_);
+	preamble_ = std::string(pa, SIZE_OF_PREAMBLE);
 }
 
 /*-----------------------------------------------------------------------------

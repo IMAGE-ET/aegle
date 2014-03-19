@@ -70,13 +70,12 @@ bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 	}
 
 	// get the size of the prefix and preamble and set up a buffer
-	int size = (*d).getSizeOfPreamble();
-	char *preambleBuff = new char[size];
-	char *prefixBuff = new char[4];
+	char *preambleBuff = new char[DICOM::SIZE_OF_PREAMBLE];
+	char *prefixBuff = new char[DICOM::SIZE_OF_PREFIX];
 
 	// read in the preable and prefix
-	f->read(preambleBuff, size);
-	f->read(prefixBuff, 4);
+	f->read(preambleBuff, DICOM::SIZE_OF_PREAMBLE);
+	f->read(prefixBuff, DICOM::SIZE_OF_PREFIX);
 
 	// verify prefix
 	if (prefixBuff[0] != 'D' || prefixBuff[1] != 'I' || prefixBuff[2] != 'C' || prefixBuff[3] != 'M') 
@@ -86,7 +85,7 @@ bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 	}
 	else
 	{
-		std::cout << "SUCESS: Prefix found" << std::endl;
+		std::cout << "SUCCESS: Prefix found" << std::endl;
 	}
 
 	// set preamble
@@ -111,6 +110,13 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	// read in the group and element
 	f->read(groupBuff, 10);
+
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << "[" << i << "]" << groupBuff[i] << ";";
+	}
+	
+	std::cout << std::endl;
 	
 	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
 
@@ -124,5 +130,6 @@ Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3
 
 	std::cout << "Tag: " << std::setfill('0') << std::hex << "0x" << std::setw(8) << tagDescription;
 	std::cout << " - " << td_.toString(tagDescription) << std::endl;
+
 	return td_.searchDescription(tagDescription);
 }

@@ -10,6 +10,7 @@ Created March 6th 2014
 #include <string>
 
 #include "../util/dicomparser/DICOMParser.h"
+
 #include "TagDictionary.h"
 
 class DICOM 
@@ -19,15 +20,16 @@ class DICOM
 		DICOM();
 		~DICOM();
 
-		std::string getPreamble();
-		int getSizeOfPreamble();
+		std::string getPreamble() const;
 
 		void setPreamble(char *pa);
+		
+		static const int SIZE_OF_PREAMBLE = 128;
+		static const int SIZE_OF_PREFIX = 4;
 
 	private:
 
-		static const int sizeOfPreamble_ = 128;
-		std::string preamble;
+		std::string preamble_;
 };
 
 #endif /*DICOM_H*/
