@@ -9,8 +9,6 @@ Created February 27th 2014
 
 #include "dicom\DICOM.h"
 
-using namespace std;
-
 void sarahSandbox();
 
 /**
@@ -20,35 +18,36 @@ int main()
 {
 	int in;
 
-	cout << "Hello Welcome to Aegle!\n\nWhat would you like to run?" << endl;
-	cout << "1. Sarah's Sandbox\n" << endl << endl;
-	cin >> in;
+	std::cout << "Hello Welcome to Aegle!\n\nWhat would you like to run?" << std::endl;
+	std::cout << "1. Sarah's Sandbox\n" << std::endl << std::endl;
+	std::cin >> in;
 
-	cout << endl;
+	std::cout << std::endl;
 
 	switch(in) {
 	case 1:
 		sarahSandbox();
 		break;
 	default:
-		cout << in << " is not a valid option\n";
+		std::cout << in << " is not a valid option\n";
 		break;
 	}
 
-	cin >> in;
+	std::cin >> in;
 }
 
 void sarahSandbox() 
 {
-	cout << "Hello Welcome to Sarah's Sandbox!" << endl;
+	std::cout << "Hello Welcome to Sarah's Sandbox!" << std::endl;
 
-	string fileName;
+	std::string fileName = "../Samples/WRIX/WRISTRIGHT/SCOUT3-PLANE/IM-0001-0001.dcm";
 	DICOM d;
+	DICOMParser dp;
 
-	cout << "Please enter the location of a Dicom file" << endl;
-	cin.ignore();
-	getline(cin, fileName);
-	cout << "Attemping to parse: " << fileName << endl;
+	//std::cout << "Please enter the location of a Dicom file" << std::endl;
+	//std::cin.ignore();
+	//std::getline(std::cin, fileName);
+	std::cout << "Attemping to parse: " << fileName << std::endl;
 
-	d.parseFromFile(fileName);
+	dp.parse(fileName, &d);
 }

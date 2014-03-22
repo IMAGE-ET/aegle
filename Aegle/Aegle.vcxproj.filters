@@ -74,6 +74,8 @@
     </ClCompile>
     <ClCompile Include="src\stl\STLWriterBinary.cpp">
       <Filter>Source Files\util\stlwriter</Filter>
+    <ClCompile Include="src\dicom\Tag.cpp">
+      <Filter>Source Files\dicom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,12 @@
     </ClInclude>
     <ClInclude Include="src\stl\STLWriter.h">
       <Filter>Header Files\util\stlwriter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\Tag.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\TagDescription.h">
+      <Filter>Source Files\dicom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

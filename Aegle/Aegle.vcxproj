@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="src\dicom\DICOM.cpp" />
     <ClCompile Include="src\dicom\MRIDICOM.cpp" />
+    <ClCompile Include="src\dicom\Tag.cpp" />
     <ClCompile Include="src\dicom\TagDictionary.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\stl\STL.cpp" />
@@ -25,6 +26,8 @@
   <ItemGroup>
     <ClInclude Include="src\dicom\DICOM.h" />
     <ClInclude Include="src\dicom\MRIDICOM.h" />
+    <ClInclude Include="src\dicom\Tag.h" />
+    <ClInclude Include="src\dicom\TagDescription.h" />
     <ClInclude Include="src\dicom\TagDictionary.h" />
     <ClInclude Include="src\stl\STL.h" />
     <ClInclude Include="src\stl\STLWriter.h" />

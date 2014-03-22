@@ -8,10 +8,12 @@ Created March 6th 2014
 #define DICOMPARSER_H
 
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
-using namespace std;
+#include "../../dicom/Tag.h"
+#include "../../dicom/TagDictionary.h"
 
 class DICOM;
 
@@ -22,11 +24,16 @@ class DICOMParser
 		DICOMParser();
 		~DICOMParser();
 
-		bool parse(string fileName, DICOM *d);
+		bool parse(std::string fileName, DICOM *d);
 
 	private:
 
-		bool parsePreamble(ifstream *f, DICOM *d);
+		bool parsePreamble(std::ifstream *f, DICOM *d);
+		bool parseTag(std::ifstream *f, Tag *t);
+
+		Tag_Description toTagDescription(char c0, char c1, char c2, char c3);
+
+		static TagDictionary td_;
 };
 
 #endif /*DICOMPARSER_H*/

@@ -11,7 +11,7 @@ Created March 6th 2014
 
 #include "../util/dicomparser/DICOMParser.h"
 
-using namespace std;
+#include "TagDictionary.h"
 
 class DICOM 
 {
@@ -20,17 +20,16 @@ class DICOM
 		DICOM();
 		~DICOM();
 
-		string getPreamble();
-		int getSizeOfPreamble();
+		std::string getPreamble() const;
 
 		void setPreamble(char *pa);
-
-		bool parseFromFile(string fileName);
+		
+		static const int SIZE_OF_PREAMBLE = 128;
+		static const int SIZE_OF_PREFIX = 4;
 
 	private:
 
-		static const int sizeOfPreamble = 128;
-		string preamble;
+		std::string preamble_;
 };
 
 #endif /*DICOM_H*/

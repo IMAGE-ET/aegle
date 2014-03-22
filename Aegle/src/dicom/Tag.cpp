@@ -1,42 +1,33 @@
 /**
-@file DICOM.cpp
+@file Tag.cpp
 
-Created March 6th 2014
+Created March 10th 2014
 */
 
-#include "DICOM.h"
+#include "Tag.h"
 
 /*-----------------------------------------------------------------------------
 CONSTRUCTORS AND DESTRUCTORS
 -----------------------------------------------------------------------------*/
 
-DICOM::DICOM() 
+Tag::Tag() 
 {
-}
-
-DICOM::~DICOM() 
-{
-		
 }
 
 /*-----------------------------------------------------------------------------
 ACCESSORS
 -----------------------------------------------------------------------------*/
 
-std::string DICOM::getPreamble() const
+Tag_Description Tag::getTagDescription() const
 {
-	return preamble_;
+	return tagDescription_;
 }
 
 /*-----------------------------------------------------------------------------
 MUTATORS
 -----------------------------------------------------------------------------*/
 
-void DICOM::setPreamble(char *pa)
+void Tag::setTagDescription(Tag_Description td)
 {
-	preamble_ = std::string(pa, SIZE_OF_PREAMBLE);
+	tagDescription_ = td;
 }
-
-/*-----------------------------------------------------------------------------
-OTHER
------------------------------------------------------------------------------*/

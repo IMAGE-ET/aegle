@@ -1,15 +1,17 @@
 /**
 @file TagDictionary.h
 
-Created March 10Sth 2014
+Created March 10th 2014
 */
 
 #ifndef TAGDICTIONARY_H
 #define TAGDICTIONARY_H
 
 #include <map>
+#include <string>
 
-using namespace std;
+#include "Tag.h"
+#include "TagDescription.h"
 
 class TagDictionary 
 {
@@ -17,23 +19,17 @@ class TagDictionary
 
 		TagDictionary();
 
-		enum Tag
-		{
-			GROUP_LENGTH,
-			META_INFO_VERSION,
-			MEDIA_STORAGE_SOP_CLASS_UID,
-			MEDIA_STORAGE_SOP_INSTANCE_UID,
-			TRANSFER_SYNTAX_UID,
-			IMPLEMENTATION_CLASS_UID,
-			IMPLEMENTATION_VERSION_NAME,
-			SOURCE_APPLICATION_ENTITY_TITLE,
-			PRIVATE_INFO_CREATOR_UID,
-			PRIVATE_INFORMATION
-		};
+		Tag_Description searchDescription(int value);
+		std::string toString(Tag_Description tagDescription);
+		std::string toString(int value);
 
 	private:
 
-		static map<char,Tag> dictionary;
+		void createEnumDictionary();
+		void createNameDictionary();
+
+		static std::map<int, Tag_Description> enumDictionary_;
+		static std::map<Tag_Description, std::string> nameDictionary_;
 };
 
 #endif /*TAGDICTIONARY_H*/
