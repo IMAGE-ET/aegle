@@ -22,6 +22,27 @@
     <Filter Include="Source Files\util\dicomparser">
       <UniqueIdentifier>{c9b19798-0924-4c28-8476-a641c460f64a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\stl">
+      <UniqueIdentifier>{d656ff59-f7bd-4ac8-b69d-15d5999fecb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stl">
+      <UniqueIdentifier>{2093e946-cd5b-4c13-b46f-a74889a80ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dicom">
+      <UniqueIdentifier>{6cc25b21-9c8c-408c-b428-5a84be1ee20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util\stlwriter">
+      <UniqueIdentifier>{7022a9a8-c70a-4401-ae71-499e9fa09f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{66827dbb-f013-43fc-a415-e3e46a0f88cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util\dicomparser">
+      <UniqueIdentifier>{26f1ecfe-c132-4695-aafc-c37e1123efe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util\stlwriter">
+      <UniqueIdentifier>{8af8bb01-0023-492e-8123-28e985a198bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -42,25 +63,55 @@
     <ClCompile Include="src\dicom\Tag.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
+    <ClCompile Include="src\stl\Facet.cpp">
+      <Filter>Source Files\stl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stl\STL.cpp">
+      <Filter>Source Files\stl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stl\STLWriter.cpp">
+      <Filter>Source Files\util\stlwriter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stl\STLWriterBinary.cpp">
+      <Filter>Source Files\util\stlwriter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stl\STLWriterASCII.cpp">
+      <Filter>Source Files\util\stlwriter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\stl\STL.h">
+      <Filter>Header Files\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\Facet.h">
+      <Filter>Header Files\stl</Filter>
+    </ClInclude>
     <ClInclude Include="src\dicom\DICOM.h">
-      <Filter>Source Files\dicom</Filter>
+      <Filter>Header Files\dicom</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\MRIDICOM.h">
-      <Filter>Source Files\dicom</Filter>
-    </ClInclude>
-    <ClInclude Include="src\util\dicomparser\DICOMParser.h">
-      <Filter>Source Files\util\dicomparser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dicom\TagDictionary.h">
-      <Filter>Source Files\dicom</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dicom\Tag.h">
-      <Filter>Source Files\dicom</Filter>
+      <Filter>Header Files\dicom</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\TagDescription.h">
-      <Filter>Source Files\dicom</Filter>
+      <Filter>Header Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\Tag.h">
+      <Filter>Header Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\TagDictionary.h">
+      <Filter>Header Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\STLWriterASCII.h">
+      <Filter>Header Files\util\stlwriter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\STLWriterBinary.h">
+      <Filter>Header Files\util\stlwriter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\STLWriter.h">
+      <Filter>Header Files\util\stlwriter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\dicomparser\DICOMParser.h">
+      <Filter>Header Files\util\dicomparser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
