@@ -10,6 +10,7 @@ Created February 27th 2014
 #include "dicom\DICOM.h"
 
 void sarahSandbox();
+void rickyBag();
 
 /**
  * This is where the magic all starts
@@ -19,7 +20,8 @@ int main()
 	int in;
 
 	std::cout << "Hello Welcome to Aegle!\n\nWhat would you like to run?" << std::endl;
-	std::cout << "1. Sarah's Sandbox\n" << std::endl << std::endl;
+	std::cout << "1. Sarah's Sandbox\n";
+    std::cout << "2. Ricky's Bag of Goodies\n" << std::endl << std::endl;
 	std::cin >> in;
 
 	std::cout << std::endl;
@@ -28,6 +30,9 @@ int main()
 	case 1:
 		sarahSandbox();
 		break;
+    case 2:
+        rickyBag();
+        break;
 	default:
 		std::cout << in << " is not a valid option\n";
 		break;
@@ -50,4 +55,10 @@ void sarahSandbox()
 	std::cout << "Attemping to parse: " << fileName << std::endl;
 
 	dp.parse(fileName, &d);
+}
+
+void rickyBag()
+{
+    std::cout << "You're not leaving." << std::endl;
+
 }
