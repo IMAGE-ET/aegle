@@ -10,6 +10,7 @@ Created March 10th 2014
 #include <map>
 
 #include "TagDescription.h"
+#include "ValueRepresentation.h"
 
 class Tag 
 {
@@ -18,12 +19,15 @@ class Tag
 		Tag();
 
 		Tag_Description getTagDescription() const;
+		Value_Representation getValueRepresentation() const;
 
 		void setTagDescription(Tag_Description td);
+		void setValueRepresentation(Value_Representation vr);
 
 	private:
 
 		Tag_Description tagDescription_;
+		Value_Representation vr_;
 		int length_;
 };
 

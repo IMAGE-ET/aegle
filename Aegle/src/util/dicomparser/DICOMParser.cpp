@@ -99,7 +99,8 @@ bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 {
 	std::cout << "--- PARSING TAG" << std::endl;
-
+	
+	// check to see if we passed in a null pointer for the tag or file stream
 	if (f == NULL || t == NULL || !f->is_open()) 
 	{
 		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
@@ -113,11 +114,12 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "[" << i << "]" << groupBuff[i] << ";";
+		std::cout << "[" << i << "]" << "0x" << std::setw(2) << std::setfill('0') << std::hex << int(groupBuff[i]) << ";";
 	}
-	
+
 	std::cout << std::endl;
 	
+	// determine what type of tag it is.
 	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
 
 	return true;
@@ -125,6 +127,8 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3)
 {
+	//@TODO: There has got to be a more elegant way
+	//@TODO: Check that eindianess is correct
 	int tagDescription = 0x00000000;
 	tagDescription |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
 
@@ -132,4 +136,11 @@ Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3
 	std::cout << " - " << td_.toString(tagDescription) << std::endl;
 
 	return td_.searchDescription(tagDescription);
+}
+
+Value_Representation DICOMParser::toValueRepresentation(char c0, char c1)
+{
+	//@TOD0: Complete
+
+	return UN;
 }

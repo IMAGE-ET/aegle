@@ -32,6 +32,7 @@ class DICOMParser
 		bool parseTag(std::ifstream *f, Tag *t);
 
 		Tag_Description toTagDescription(char c0, char c1, char c2, char c3);
+		Value_Representation toValueRepresentation(char c0, char c1)
 
 		static TagDictionary td_;
 };

@@ -24,6 +24,7 @@
     <ClInclude Include="src\dicom\Tag.h" />
     <ClInclude Include="src\dicom\TagDescription.h" />
     <ClInclude Include="src\dicom\TagDictionary.h" />
+    <ClInclude Include="src\dicom\ValueRepresentation.h" />
     <ClInclude Include="src\util\dicomparser\DICOMParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

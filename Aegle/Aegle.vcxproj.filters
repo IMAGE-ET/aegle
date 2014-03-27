@@ -62,5 +62,8 @@
     <ClInclude Include="src\dicom\TagDescription.h">
       <Filter>Source Files\dicom</Filter>
     </ClInclude>
+    <ClInclude Include="src\dicom\ValueRepresentation.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
