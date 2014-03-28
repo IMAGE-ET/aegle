@@ -12,6 +12,7 @@ Created March 11th 2014
 
 #include <string>
 #include <stdlib.h>
+#include <vector>
 #include "Facet.h"
 
 using namespace std;
@@ -33,15 +34,14 @@ public:
     int getHeaderLength() const;
     int getNumFacets() const;
     string getName() const;
-    Facet* getFacets() const;
+    vector<Facet> getFacets() const;
     Facet getFacetAt(const int& i) ;
 
     // Mutators
     void setHeader(const string& s);
     void setNumFacets(const int& l);
     void setName(const string& name);
-    void setFacets(const Facet*& facets);
-    void setFacets(const Facet*& facets, const int& size);
+    void setFacets(const vector<Facet>& facets);
     void setFacetAt(const Facet& facet, const int& i);
     void addFacet(const Facet& facet);
 
@@ -50,9 +50,8 @@ private:
 
     //Members
     string header_;
-    int numFacets_;
     string name_;
-    Facet* facets_;
+    vector<Facet> facets_;
 };
 
 #endif /* STL_H */

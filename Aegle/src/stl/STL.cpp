@@ -6,19 +6,17 @@ Created March 11th 2014
 
 #include "STL.h"
 
-STL::STL() : header_(""), numFacets_(0)
+STL::STL() : header_(""), facets_(0)
 {
-    facets_ = new Facet[numFacets_];
 }
 
-STL::STL(int numFacets) : header_(""), numFacets_(numFacets)
+STL::STL(int numFacets) : header_(""), facets_(numFacets)
 {
-    facets_ = new Facet[numFacets_];
 }
 
 STL::~STL()
 {
-    delete facets_;
+
 }
 
 // Accesors
@@ -34,7 +32,7 @@ int STL::getHeaderLength() const
 
 int STL::getNumFacets() const
 {
-    return numFacets_;
+    return facets_.size();
 }
 
 string STL::getName() const
@@ -42,7 +40,7 @@ string STL::getName() const
     return name_;
 }
 
-Facet* STL::getFacets() const
+vector<Facet> STL::getFacets() const
 {
     return facets_;
 }
@@ -65,30 +63,20 @@ void STL::setHeader(const string& s)
 
 void STL::setNumFacets(const int& l)
 {
-    delete facets_;
-    facets_ = new Facet[l];
-
-    numFacets_ = l;
+	facets_.resize(l);
 }
 
 void STL::setName(const string& name)
 {
     name_ = name;
 }
-void STL::setFacets(const Facet*& facets)
+void STL::setFacets(const vector<Facet>& facets)
 {
-    for(int i = 0; i < numFacets_; i++)
+    for(size_t i = 0; i < facets_.size(); i++)
     {
         facets_[i] = facets[i];
     }
 }
-
-void STL::setFacets(const Facet*& facets, const int& size)
-{
-    this->setNumFacets(size);
-    this->setFacets(facets);
-}
-
 
 void STL::setFacetAt(const Facet& facet, const int& i)
 {
@@ -101,17 +89,10 @@ void STL::setFacetAt(const Facet& facet, const int& i)
 
 void STL::addFacet(const Facet& facet)
 {
-    Facet* temp = new Facet[numFacets_+1];
-    for(int i = 0; i < numFacets_; i++)
-    {
-        temp[i] = facets_[i];
-    }
-  
-    temp[numFacets_] = facet;
-    numFacets_++; 
+	facets_.push_back(facet);
 }
 
 bool STL::isFacetIndexValid(const int& i)
 {
-    return (i > 0 && i < numFacets_);
+    return (i > 0 && (size_t)i < facets_.size());
 }

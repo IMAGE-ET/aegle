@@ -16,14 +16,18 @@ Created March 11th 2014
 
 using namespace std;
 
+static const int VECTOR_SIZE = 3;
+static const int NUM_VERTICES = 3;
+static const int NUM_COORDINATES = 3;
+
 typedef struct {
     float x;
     float y;
     float z;
 } vertex;
 
-typedef array<float,3> normal;
-typedef array<vertex,3> vertices;
+typedef array<float,VECTOR_SIZE> normal;
+typedef array<vertex,NUM_VERTICES> vertices;
 
 
 class Facet
@@ -50,9 +54,7 @@ public:
 
 private:
     // Constants for Facet
-    static const int VECTOR_SIZE = 3;
-    static const int NUM_VERTICES = 3;
-    static const int NUM_COORDINATES = 3;
+
 
     static const int I_INDEX = 0;
     static const int J_INDEX = 1;
