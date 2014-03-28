@@ -12,6 +12,7 @@ Created March 26th 2014
 */
 enum Value_Representation
 {
+	UN, // Unknown
 	AE, // Aplication Name
 	AS, // Age String
 	AT, // Attribute Tag
@@ -19,13 +20,13 @@ enum Value_Representation
 	DA, // Date
 	DS, // Decimal String
 	DT, // Date Time 
-	FL, // Single Precision Floating Point Number
-	FD, // Double Precision Floating Point Number
+	FL, // Single Precision Floating Point
+	FD, // Double Precision Floating Point
 	IS, // Integer
 	LO, // Character String
 	LT, // Long Text
 	OB, // Single Trailing 0x00
-	OF, // Other FLoat String
+	OF, // Other Float String
 	OW, // Other Word String
 	PN, // Person's Name
 	SH, // Short String
@@ -36,7 +37,6 @@ enum Value_Representation
 	TM, // Time
 	UI, // Uniqe Identifier
 	UL, // Unsigned Long Integer
-	UN, // Unknown
 	US, // Unsigned Short Integer
 	UT  // Unlimited Text
 };

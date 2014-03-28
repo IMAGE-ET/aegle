@@ -18,9 +18,11 @@ class Tag
 
 		Tag();
 
+		int getLength() const;
 		Tag_Description getTagDescription() const;
 		Value_Representation getValueRepresentation() const;
 
+		void setLength(int len);
 		void setTagDescription(Tag_Description td);
 		void setValueRepresentation(Value_Representation vr);
 

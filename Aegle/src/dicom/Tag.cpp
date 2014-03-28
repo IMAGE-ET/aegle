@@ -17,12 +17,15 @@ Tag::Tag()
 /*-----------------------------------------------------------------------------
 ACCESSORS
 -----------------------------------------------------------------------------*/
+int Tag::getLength() const
+{
+	return length_;
+}
 
 Tag_Description Tag::getTagDescription() const
 {
 	return tagDescription_;
 }
-
 
 Value_Representation Tag::getValueRepresentation() const
 {
@@ -32,6 +35,10 @@ Value_Representation Tag::getValueRepresentation() const
 /*-----------------------------------------------------------------------------
 MUTATORS
 -----------------------------------------------------------------------------*/
+void Tag::setLength(int len)
+{
+	length_ = len;
+}
 
 void Tag::setTagDescription(Tag_Description td)
 {

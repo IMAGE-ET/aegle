@@ -121,6 +121,7 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	
 	// determine what type of tag it is.
 	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
+	t->setValueRepresentation(toValueRepresentation(groupBuff[4], groupBuff[5]));
 
 	return true;
 }
@@ -132,15 +133,19 @@ Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3
 	int tagDescription = 0x00000000;
 	tagDescription |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
 
-	std::cout << "Tag: " << std::setfill('0') << std::hex << "0x" << std::setw(8) << tagDescription;
-	std::cout << " - " << td_.toString(tagDescription) << std::endl;
+	std::cout << "Tag: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << tagDescription;
+	std::cout << " - " << td_.toTagName(tagDescription) << std::endl;
 
 	return td_.searchDescription(tagDescription);
 }
 
 Value_Representation DICOMParser::toValueRepresentation(char c0, char c1)
 {
-	//@TOD0: Complete
+	int vr = 0x00000000;
+	vr |= c0 << 8 | c1;
 
-	return UN;
+	std::cout << "Value Representation: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << vr;
+	std::cout << " - " << td_.toVrName(vr) << std::endl;
+
+	return td_.searchVr(vr);
 }
