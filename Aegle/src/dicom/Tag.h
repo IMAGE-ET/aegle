@@ -24,6 +24,8 @@ class Tag
 
 		void setLength(int len);
 		void setTagDescription(Tag_Description td);
+		void setValue(char* buff);
+		void setValue(char* buff, int length);
 		void setValueRepresentation(Value_Representation vr);
 
 	private:
@@ -31,6 +33,7 @@ class Tag
 		Tag_Description tagDescription_;
 		Value_Representation vr_;
 		int length_;
+		char* value_;
 };
 
 #endif /*TAG_H*/

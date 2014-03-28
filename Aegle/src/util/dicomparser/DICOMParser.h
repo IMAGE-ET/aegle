@@ -28,6 +28,9 @@ class DICOMParser
 
 	private:
 
+		bool isValid(std::ifstream *f, DICOM *d);
+		bool isValid(std::ifstream *f, Tag *t);
+
 		bool parsePreamble(std::ifstream *f, DICOM *d);
 		bool parseTag(std::ifstream *f, Tag *t);
 

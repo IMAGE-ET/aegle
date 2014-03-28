@@ -45,6 +45,24 @@ void Tag::setTagDescription(Tag_Description td)
 	tagDescription_ = td;
 }
 
+void Tag::setValue(char* buff)
+{
+	delete value_;
+
+	value_ = new char[length_];
+
+	for(int i = 0; i < length_; i++)
+	{
+		value_[i] = *(buff + i);
+	}
+}
+
+void Tag::setValue(char* buff, int length)
+{
+	setLength(length);
+	setValue(buff);
+}
+
 void Tag::setValueRepresentation(Value_Representation vr)
 {
 	vr_ = vr;

@@ -57,13 +57,34 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 	}
 }
 
+bool DICOMParser::isValid(std::ifstream *f, DICOM *d)
+{
+	if (f == NULL || d == NULL || !f->is_open()) 
+	{
+		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool DICOMParser::isValid(std::ifstream *f, Tag *t)
+{
+	if (f == NULL || t == NULL || !f->is_open()) 
+	{
+		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
 bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 {
 	std::cout << "--- PARSING PREAMBLE" << std::endl;
 
 	// check to see if null parameters where passed in
-	// if so return null
-	if (f == NULL || d == NULL || !f->is_open()) 
+	if (!isValid(f, d)) 
 	{
 		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
 		return false;
@@ -100,28 +121,50 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 {
 	std::cout << "--- PARSING TAG" << std::endl;
 	
-	// check to see if we passed in a null pointer for the tag or file stream
-	if (f == NULL || t == NULL || !f->is_open()) 
+	// check to see if null parameters where passed in
+	if (!isValid(f, t)) 
 	{
 		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
 		return false;
 	}
 
-	char *groupBuff = new char[10];
+	// parse the group tag
+	char *groupBuff = new char[DICOM::SIZE_OF_GROUP_TAG];
 
 	// read in the group and element
-	f->read(groupBuff, 10);
+	f->read(groupBuff, DICOM::SIZE_OF_GROUP_TAG);
 
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << "[" << i << "]" << "0x" << std::setw(2) << std::setfill('0') << std::hex << int(groupBuff[i]) << ";";
-	}
-
-	std::cout << std::endl;
-	
 	// determine what type of tag it is.
 	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
-	t->setValueRepresentation(toValueRepresentation(groupBuff[4], groupBuff[5]));
+
+	delete groupBuff;
+
+	// parse the value representation
+	char *vrBuff = new char[DICOM::SIZE_OF_VR];
+
+	// read in the group and element
+	f->read(vrBuff, DICOM::SIZE_OF_VR);
+
+	// parse the value representation
+	t->setValueRepresentation(toValueRepresentation(vrBuff[0], vrBuff[1]));
+
+	delete vrBuff;
+
+	// parse the length
+	char *lengthBuff = new char[DICOM::SIZE_OF_LENGTH];
+
+	// read in the group and element
+	f->read(lengthBuff, DICOM::SIZE_OF_LENGTH);
+
+	// parse the value representation
+	t->setLength(lengthBuff[0]);
+	std::cout << "Length: " << int(lengthBuff[0]) << std::endl;
+
+	delete lengthBuff;
+
+	unsigned long value;
+
+	f->read(reinterpret_cast<char*>(&value), t->getLength());
 
 	return true;
 }
