@@ -7,6 +7,7 @@ Created March 10th 2014
 #ifndef TAG_H
 #define TAG_H
 
+#include <iostream>
 #include <map>
 
 #include "TagDescription.h"
@@ -21,6 +22,7 @@ class Tag
 		int getLength() const;
 		Tag_Description getTagDescription() const;
 		Value_Representation getValueRepresentation() const;
+		unsigned long getValueUL();
 
 		void setLength(int len);
 		void setTagDescription(Tag_Description td);

@@ -44,8 +44,14 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			return false;
 		}
 
-		Tag t;
-		ret = parseTag(&f, &t);
+		Tag t1;
+		ret = parseTag(&f, &t1);
+
+		Tag t2;
+		ret = parseTag(&f, &t2);
+
+		Tag t3;
+		ret = parseTag(&f, &t3);
 
 		return true;
 	}
@@ -54,6 +60,18 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 		// unable to open the designated file
 		std::cout << "Unable to open: " << fileName << std::endl;
 		return false;
+	}
+}
+
+int DICOMParser::getLength(Value_Representation vr)
+{
+	switch (vr)
+	{
+	case UL:
+	default:
+		return DICOM::SIZE_OF_LENGTHA;
+	case OB:
+		return DICOM::SIZE_OF_LENGTHB;
 	}
 }
 
@@ -119,6 +137,9 @@ bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 
 bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 {
+	std::ios state(NULL);
+	state.copyfmt(std::cout);
+	
 	std::cout << "--- PARSING TAG" << std::endl;
 	
 	// check to see if null parameters where passed in
@@ -130,65 +151,109 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	// parse the group tag
 	char *groupBuff = new char[DICOM::SIZE_OF_GROUP_TAG];
+	int group;
 
 	// read in the group and element
 	f->read(groupBuff, DICOM::SIZE_OF_GROUP_TAG);
 
 	// determine what type of tag it is.
-	t->setTagDescription(toTagDescription(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]));
+	group = toInt(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]);
+	t->setTagDescription(toTagDescription(group));
 
 	delete groupBuff;
 
 	// parse the value representation
 	char *vrBuff = new char[DICOM::SIZE_OF_VR];
+	int vr;
 
 	// read in the group and element
 	f->read(vrBuff, DICOM::SIZE_OF_VR);
 
 	// parse the value representation
-	t->setValueRepresentation(toValueRepresentation(vrBuff[0], vrBuff[1]));
+	vr = toInt(vrBuff[0], vrBuff[1]);
+	t->setValueRepresentation(toValueRepresentation(vr));
 
 	delete vrBuff;
 
 	// parse the length
-	char *lengthBuff = new char[DICOM::SIZE_OF_LENGTH];
+	int lengthSize = getLength(t->getValueRepresentation());
+	char *lengthBuff = new char[lengthSize];
+	int length;
 
 	// read in the group and element
-	f->read(lengthBuff, DICOM::SIZE_OF_LENGTH);
+	f->read(lengthBuff, lengthSize);
 
 	// parse the value representation
-	t->setLength(lengthBuff[0]);
-	std::cout << "Length: " << int(lengthBuff[0]) << std::endl;
+	if (lengthSize == DICOM::SIZE_OF_LENGTHA)
+	{
+		length = toInt(lengthBuff[1], lengthBuff[0]);
+	}
+	else
+	{
+		length = toInt(lengthBuff[1], lengthBuff[0], lengthBuff[3], lengthBuff[2]);
+	}
+			
+	t->setLength(length);
+
+	std::cout << "Length: " << length << std::endl;
 
 	delete lengthBuff;
 
-	unsigned long value;
+	// parse the value
+	char *valueBuff = new char[t->getLength()];
 
-	f->read(reinterpret_cast<char*>(&value), t->getLength());
+	// read in the group and element
+	f->read(valueBuff, t->getLength());
+
+	// parse the value representation
+	t->setValue(valueBuff);
+
+	switch(t->getValueRepresentation())
+	{
+	case UL:
+	default:
+		std::cout << "Value: " << std::dec << t->getValueUL() << std::endl;
+	}
+
+	delete valueBuff;
 
 	return true;
 }
 
-Tag_Description DICOMParser::toTagDescription(char c0, char c1, char c2, char c3)
+int DICOMParser::toInt(char c0, char c1)
 {
 	//@TODO: There has got to be a more elegant way
 	//@TODO: Check that eindianess is correct
-	int tagDescription = 0x00000000;
-	tagDescription |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
 
-	std::cout << "Tag: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << tagDescription;
-	std::cout << " - " << td_.toTagName(tagDescription) << std::endl;
+	int val = 0x00000000;
+	val |= c0 << 8 | c1;
 
-	return td_.searchDescription(tagDescription);
+	return val;
 }
 
-Value_Representation DICOMParser::toValueRepresentation(char c0, char c1)
+int DICOMParser::toInt(char c0, char c1, char c2, char c3)
 {
-	int vr = 0x00000000;
-	vr |= c0 << 8 | c1;
+	//@TODO: There has got to be a more elegant way
+	//@TODO: Check that eindianess is correct
 
-	std::cout << "Value Representation: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << vr;
-	std::cout << " - " << td_.toVrName(vr) << std::endl;
+	int val = 0x00000000;
+	val |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
 
-	return td_.searchVr(vr);
+	return val;
+}
+
+Tag_Description DICOMParser::toTagDescription(int value)
+{
+	std::cout << "Tag: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << value;
+	std::cout << " - " << td_.toTagName(value) << std::endl;
+
+	return td_.searchDescription(value);
+}
+
+Value_Representation DICOMParser::toValueRepresentation(int value)
+{
+	std::cout << "Value Representation: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << value;
+	std::cout << " - " << td_.toVrName(value) << std::endl;
+
+	return td_.searchVr(value);
 }

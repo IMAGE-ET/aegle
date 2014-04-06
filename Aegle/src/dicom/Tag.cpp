@@ -32,6 +32,22 @@ Value_Representation Tag::getValueRepresentation() const
 	return vr_;
 }
 
+unsigned long Tag::getValueUL()
+{
+	unsigned long ul = 0;
+	
+	if (length_ != sizeof(unsigned long))
+	{
+		// @TODO: some sort of exception
+		std::cout << "Unsigned long is " << sizeof(unsigned long) << " but length is " << length_ << std::endl;
+		return 0;
+	}
+
+	memcpy(&ul, value_, sizeof(unsigned long));
+
+	return ul;
+}
+
 /*-----------------------------------------------------------------------------
 MUTATORS
 -----------------------------------------------------------------------------*/

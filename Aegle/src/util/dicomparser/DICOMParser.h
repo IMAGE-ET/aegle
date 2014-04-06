@@ -7,9 +7,12 @@ Created March 6th 2014
 #ifndef DICOMPARSER_H
 #define DICOMPARSER_H
 
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
+#include <stdlib.h>
 #include <string>
 
 #include "../../dicom/Tag.h"
@@ -28,14 +31,18 @@ class DICOMParser
 
 	private:
 
+		int getLength(Value_Representation vr);
+
 		bool isValid(std::ifstream *f, DICOM *d);
 		bool isValid(std::ifstream *f, Tag *t);
 
 		bool parsePreamble(std::ifstream *f, DICOM *d);
 		bool parseTag(std::ifstream *f, Tag *t);
 
-		Tag_Description toTagDescription(char c0, char c1, char c2, char c3);
-		Value_Representation toValueRepresentation(char c0, char c1);
+		int toInt(char c0, char c1);
+		int toInt(char c0, char c1, char c2, char c3);
+		Tag_Description toTagDescription(int value);
+		Value_Representation toValueRepresentation(int value);
 
 		static TagDictionary td_;
 };
