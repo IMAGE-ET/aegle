@@ -135,7 +135,7 @@ bool STLWriter::writeSTLFacet(const Facet& facet, const bool& isBinaryMode)
         ((float*) c)[1] = facet.getNormal()[1];
         ((float*) c)[2] = facet.getNormal()[2];
 
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < NUM_VERTICES; ++i)
         {
             ((float*) c)[i + 0 + 2] = facet.getVertexAt(i).x;
             ((float*) c)[i + 1 + 2] = facet.getVertexAt(i).y;
