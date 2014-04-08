@@ -45,7 +45,7 @@ vector<Facet> STL::getFacets() const
     return facets_;
 }
 
-Facet STL::getFacetAt(const int& i) 
+Facet STL::getFacetAt(const int& i) const
 {
     if(isFacetIndexValid(i))
     {
@@ -92,7 +92,7 @@ void STL::addFacet(const Facet& facet)
 	facets_.push_back(facet);
 }
 
-bool STL::isFacetIndexValid(const int& i)
+bool STL::isFacetIndexValid(const int& i) const
 {
     return (i > 0 && (size_t)i < facets_.size());
 }

@@ -35,7 +35,7 @@ public:
     int getNumFacets() const;
     string getName() const;
     vector<Facet> getFacets() const;
-    Facet getFacetAt(const int& i) ;
+    Facet getFacetAt(const int& i) const;
 
     // Mutators
     void setHeader(const string& s);
@@ -46,7 +46,7 @@ public:
     void addFacet(const Facet& facet);
 
 private:
-    bool isFacetIndexValid(const int& i);
+    bool isFacetIndexValid(const int& i) const;
 
     //Members
     string header_;
