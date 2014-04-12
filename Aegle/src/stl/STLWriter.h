@@ -7,7 +7,7 @@ Created March 11th 2014
 #define STLWRITER_H
 
 #include "STL.h"
-#include "Facet.h"
+#include "../cubes/Facet.h"
 #include <fstream>
 #include <iostream>
 #include <string>

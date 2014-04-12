@@ -13,7 +13,7 @@ Created March 11th 2014
 #include <string>
 #include <stdlib.h>
 #include <vector>
-#include "Facet.h"
+#include "../cubes/Facet.h"
 
 using namespace std;
 
