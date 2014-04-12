@@ -22,6 +22,7 @@ typedef struct {
     float x;
     float y;
     float z;
+    float weight;
 } vertex;
 
 typedef std::array<float,VECTOR_SIZE> normal;
