@@ -9,6 +9,8 @@ Created March 10th 2014
 
 #include <iostream>
 #include <map>
+#include <sstream>
+#include <string>
 
 #include "TagDescription.h"
 #include "ValueRepresentation.h"
@@ -18,17 +20,20 @@ class Tag
 	public:
 
 		Tag();
+		~Tag();
 
 		int getLength() const;
 		Tag_Description getTagDescription() const;
 		Value_Representation getValueRepresentation() const;
-		unsigned long getValueUL();
+		unsigned long getValueUL() const;
 
 		void setLength(int len);
 		void setTagDescription(Tag_Description td);
 		void setValue(char* buff);
 		void setValue(char* buff, int length);
 		void setValueRepresentation(Value_Representation vr);
+
+		std::string valueToString();
 
 	private:
 

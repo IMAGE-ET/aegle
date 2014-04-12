@@ -13,7 +13,7 @@ Created March 26th 2014
 enum Value_Representation
 {
 	UN, // Unknown
-	AE, // Aplication Name
+	AE, // Application Entity
 	AS, // Age String
 	AT, // Attribute Tag
 	CS, // Code String
@@ -22,10 +22,10 @@ enum Value_Representation
 	DT, // Date Time 
 	FL, // Single Precision Floating Point
 	FD, // Double Precision Floating Point
-	IS, // Integer
+	IS, // Integer String
 	LO, // Character String
 	LT, // Long Text
-	OB, // Single Trailing 0x00
+	OB, // Other Byte String
 	OF, // Other Float String
 	OW, // Other Word String
 	PN, // Person's Name

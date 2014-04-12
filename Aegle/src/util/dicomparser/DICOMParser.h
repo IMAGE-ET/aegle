@@ -7,11 +7,9 @@ Created March 6th 2014
 #ifndef DICOMPARSER_H
 #define DICOMPARSER_H
 
-#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <iterator>
 #include <stdlib.h>
 #include <string>
 

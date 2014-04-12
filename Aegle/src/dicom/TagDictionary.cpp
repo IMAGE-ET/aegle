@@ -359,7 +359,7 @@ void TagDictionary::createVrEnumDictionary()
 void TagDictionary::createVrNameDictionary()
 {
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(UN, "Unknown"));
-	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(AE, "Aplication Name"));
+	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(AE, "Application Entity"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(AS, "Age String")); 
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(AT, "Attribute Tag"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(CS, "Code String"));
@@ -371,7 +371,7 @@ void TagDictionary::createVrNameDictionary()
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(IS, "Integer"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(LO, "Character String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(LT, "Long Text"));
-	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(OB, "Single Trailing 0x00"));
+	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(OB, "Other Byte String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(OF, "Other Float String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(OW, "Other Word String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(PN, "Person's Name"));

@@ -12,11 +12,21 @@ CONSTRUCTORS AND DESTRUCTORS
 
 Tag::Tag() 
 {
+	value_ = NULL;
+}
+
+Tag::~Tag()
+{
+	if (value_ != NULL)
+	{
+		delete value_;
+	}
 }
 
 /*-----------------------------------------------------------------------------
 ACCESSORS
 -----------------------------------------------------------------------------*/
+
 int Tag::getLength() const
 {
 	return length_;
@@ -32,7 +42,7 @@ Value_Representation Tag::getValueRepresentation() const
 	return vr_;
 }
 
-unsigned long Tag::getValueUL()
+unsigned long Tag::getValueUL() const
 {
 	unsigned long ul = 0;
 	
@@ -51,6 +61,7 @@ unsigned long Tag::getValueUL()
 /*-----------------------------------------------------------------------------
 MUTATORS
 -----------------------------------------------------------------------------*/
+
 void Tag::setLength(int len)
 {
 	length_ = len;
@@ -82,4 +93,55 @@ void Tag::setValue(char* buff, int length)
 void Tag::setValueRepresentation(Value_Representation vr)
 {
 	vr_ = vr;
+}
+
+/*-----------------------------------------------------------------------------
+OTHER
+-----------------------------------------------------------------------------*/
+
+std::string Tag::valueToString()
+{
+	std::string str = "";
+	std::stringstream convert;
+
+	switch(vr_)
+	{
+	default:
+		convert << getValueUL();
+		str = convert.str();
+		break;
+	case AE:
+	case CS:
+	case OB:
+	case SH:
+	case UI:
+		for (int i = 0; i < length_; i++)
+		{
+			str += *(value_ + i);
+		}
+		break;
+	case DA:
+		str += "Y";
+
+		for (int i = 0; i < 4; i++)
+		{
+			str += *(value_ + i);
+		}
+
+		str += "M";
+
+		for (int i = 0; i < 2; i++)
+		{
+			str += *(value_ + 4 + i);
+		}
+
+		str += "D";
+
+		for (int i = 0; i < 2; i++)
+		{
+			str += *(value_ + 6 + i);
+		}
+	}
+
+	return str;
 }

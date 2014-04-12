@@ -30,7 +30,7 @@ OTHER
 bool DICOMParser::parse(std::string fileName, DICOM *d)
 {
 	std::ifstream f;
-	f.open(fileName);
+	f.open(fileName, std::ios::binary);
 	bool ret;
 
 	if (f.is_open())
@@ -44,15 +44,12 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			return false;
 		}
 
-		Tag t1;
-		ret = parseTag(&f, &t1);
-
-		Tag t2;
-		ret = parseTag(&f, &t2);
-
-		Tag t3;
-		ret = parseTag(&f, &t3);
-
+		for (int i = 0; i < 20; i++)
+		{
+			Tag t;
+			ret = parseTag(&f, &t);
+			d->addTag(t);
+		}
 		return true;
 	}
 	else 
@@ -67,10 +64,12 @@ int DICOMParser::getLength(Value_Representation vr)
 {
 	switch (vr)
 	{
-	case UL:
 	default:
 		return DICOM::SIZE_OF_LENGTHA;
 	case OB:
+	case OW:
+	case SQ:
+	case UN:
 		return DICOM::SIZE_OF_LENGTHB;
 	}
 }
@@ -175,10 +174,26 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	delete vrBuff;
 
+	// burn through reserved bytes
+	switch (t->getValueRepresentation())
+	{
+	default:
+		break;
+	case OB:
+	case OW:
+	case SQ:
+	case UN:
+		char *burnBuff = new char[2];
+		// read in the group and element
+		f->read(burnBuff, 2);
+		delete burnBuff;
+		break;
+	}
+
 	// parse the length
 	int lengthSize = getLength(t->getValueRepresentation());
 	char *lengthBuff = new char[lengthSize];
-	int length;
+	unsigned int length;
 
 	// read in the group and element
 	f->read(lengthBuff, lengthSize);
@@ -190,30 +205,25 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	}
 	else
 	{
-		length = toInt(lengthBuff[1], lengthBuff[0], lengthBuff[3], lengthBuff[2]);
+		length = toInt(lengthBuff[3], lengthBuff[2], lengthBuff[1], lengthBuff[0]);
 	}
 			
 	t->setLength(length);
 
-	std::cout << "Length: " << length << std::endl;
+	std::cout << "Length: " << std::dec << length << std::endl;
 
 	delete lengthBuff;
 
 	// parse the value
 	char *valueBuff = new char[t->getLength()];
 
-	// read in the group and element
+	// read in the value
 	f->read(valueBuff, t->getLength());
 
 	// parse the value representation
 	t->setValue(valueBuff);
 
-	switch(t->getValueRepresentation())
-	{
-	case UL:
-	default:
-		std::cout << "Value: " << std::dec << t->getValueUL() << std::endl;
-	}
+	std::cout << "Value: " << std::dec << t->valueToString() << std::endl;
 
 	delete valueBuff;
 
