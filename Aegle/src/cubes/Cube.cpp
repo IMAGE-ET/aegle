@@ -23,6 +23,7 @@ Cube::Cube(cubeVertices vertices)
 
 Cube::~Cube(void)
 {
+
 }
 
 int Cube::determineCase(const float& threshold)
@@ -31,6 +32,7 @@ int Cube::determineCase(const float& threshold)
 
     for(size_t i = 0; i < vertices_.size(); ++i)
     {
+        // set each bit as corresponding to each vertex
         num += (vertices_[i].weight - threshold > 0) ? 1 << i : 0;
     }
 
@@ -71,9 +73,9 @@ std::string Cube::toString()
     {
         ret += "<" + std::to_string(vertices_[i].x);
         ret += "," + std::to_string(vertices_[i].y);
-        ret += "," + std::to_string(vertices_[i].z) + ">";
+        ret += "," + std::to_string(vertices_[i].z);
+        ret += "|" + std::to_string(vertices_[i].weight); 
+        ret += ">";
     }
-
-    ret += "]";
     return ret;
 }
