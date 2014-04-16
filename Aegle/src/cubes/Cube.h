@@ -1,3 +1,8 @@
+/* @file Cube.h
+ * 
+ *  Header file for the cube encapsulation meant for the marching cubes algorithm
+ */
+
 #ifndef CUBE_H
 #define CUBE_H
 
