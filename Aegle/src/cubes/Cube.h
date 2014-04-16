@@ -31,29 +31,29 @@ public:
     // Destructors
     ~Cube(void);
 
-    /* @Desc: Return a string that has the cube's indices and the vertex locations
-     * @Returns: the string form of this cube.
+    /* @Desc Return a string that has the cube's indices and the vertex locations
+     * @Returns the string form of this cube.
      */
     std::string toString();
 
 private:
 
-    /* @Desc: Given two vertices, compute the point on the edge
+    /* @Desc Given two vertices, compute the point on the edge
      *          whose weight equals the specified value
-     * @Params: v1, v2 - two vertices of the edge 
-     * @Returns: a vector of size 3
+     * @Params v1, v2 - two vertices of the edge 
+     * @Returns a vector of size 3
      */
     vector computeEdgeBetween(const vertex& v1, const vertex& v2);
 
-    /* @Desc: For all 12 edges, compute the edges
+    /* @Desc For all 12 edges, compute the edges
      */
     void computeEdges();
 
-    /* @Desc: Given a threshold, calculate the 8 bit integer
+    /* @Desc Given a threshold, calculate the 8 bit integer
      *         where each bit represents a vertex and it is
      *         set when comparing the vertex to a thershold
-     * @Params: threshold - the threshold value to use to compute case
-     * @Returns: the case number for this cube
+     * @Params threshold - the threshold value to use to compute case
+     * @Returns the case number for this cube
      */
     int determineCase(const float& threshold);
 
