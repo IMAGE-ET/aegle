@@ -1,48 +1,48 @@
 /**
-@file Tag.h
+@file Sequence.h
 
-Created March 10th 2014
+Created April 12th 2014
 */
 
-#ifndef TAG_H
-#define TAG_H
+#ifndef SEQUENCE_H
+#define SEQUENCE_H
 
 #include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
+#include "Tag.h"	
 #include "TagDescription.h"
 #include "ValueRepresentation.h"
 
-class Tag 
+class Sequence
 {
 	public:
 
-		Tag();
-		Tag(const Tag& other);
-		~Tag();
+		Sequence();
+		~Sequence();
 
-		unsigned int getLength() const;
+		int getLength() const;
+		int getNumTags() const;
+		Tag getTag(unsigned int index) const;
 		Tag_Description getTagDescription() const;
-		char* getValue() const;
 		Value_Representation getValueRepresentation() const;
-		unsigned long getValueUL() const;
 
-		void setLength(unsigned int len);
+		void setLength(int len);
 		void setTagDescription(Tag_Description td);
-		void setValue(char* buff);
-		void setValue(char* buff, unsigned int length);
 		void setValueRepresentation(Value_Representation vr);
 
-		std::string valueToString();
+		void addTag(Tag t);
+		void removeTag(unsigned int index);
 
 	private:
 
 		Tag_Description tagDescription_;
 		Value_Representation vr_;
-		unsigned int length_;
-		char* value_;
+		int length_;
+		std::vector<Tag> value_;
 };
 
-#endif /*TAG_H*/
+#endif /*SEQUENCE_H*/

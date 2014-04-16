@@ -12,7 +12,18 @@ CONSTRUCTORS AND DESTRUCTORS
 
 Tag::Tag() 
 {
+	tagDescription_ = UNKNOWN;
+	vr_ = UN;
 	value_ = NULL;
+}
+
+Tag::Tag(const Tag& other)
+{
+	tagDescription_ = other.getTagDescription();
+	vr_ = other.getValueRepresentation();
+	length_ = other.getLength();
+	value_ = NULL;
+	setValue(other.getValue());
 }
 
 Tag::~Tag()
@@ -27,7 +38,7 @@ Tag::~Tag()
 ACCESSORS
 -----------------------------------------------------------------------------*/
 
-int Tag::getLength() const
+unsigned int Tag::getLength() const
 {
 	return length_;
 }
@@ -35,6 +46,11 @@ int Tag::getLength() const
 Tag_Description Tag::getTagDescription() const
 {
 	return tagDescription_;
+}
+
+char* Tag::getValue() const
+{
+	return value_;
 }
 
 Value_Representation Tag::getValueRepresentation() const
@@ -62,7 +78,7 @@ unsigned long Tag::getValueUL() const
 MUTATORS
 -----------------------------------------------------------------------------*/
 
-void Tag::setLength(int len)
+void Tag::setLength(unsigned int len)
 {
 	length_ = len;
 }
@@ -74,7 +90,10 @@ void Tag::setTagDescription(Tag_Description td)
 
 void Tag::setValue(char* buff)
 {
-	delete value_;
+	if (value_ != NULL)
+	{
+		delete value_;
+	}
 
 	value_ = new char[length_];
 
@@ -84,7 +103,7 @@ void Tag::setValue(char* buff)
 	}
 }
 
-void Tag::setValue(char* buff, int length)
+void Tag::setValue(char* buff, unsigned int length)
 {
 	setLength(length);
 	setValue(buff);
@@ -110,37 +129,67 @@ std::string Tag::valueToString()
 		convert << getValueUL();
 		str = convert.str();
 		break;
+
 	case AE:
 	case CS:
+	case LO:
 	case OB:
+	case PN:
 	case SH:
 	case UI:
 		for (int i = 0; i < length_; i++)
 		{
 			str += *(value_ + i);
 		}
+		
 		break;
+
 	case DA:
-		str += "Y";
+		str += "Y: ";
 
 		for (int i = 0; i < 4; i++)
 		{
 			str += *(value_ + i);
 		}
 
-		str += "M";
+		str += " M: ";
 
 		for (int i = 0; i < 2; i++)
 		{
 			str += *(value_ + 4 + i);
 		}
 
-		str += "D";
+		str += " D: ";
 
 		for (int i = 0; i < 2; i++)
 		{
 			str += *(value_ + 6 + i);
 		}
+		
+		break;
+
+	case TM:
+		str += "H: ";
+
+		for (int i = 0; i < 2; i++)
+		{
+			str += *(value_ + i);
+		}
+
+		str += " M: ";
+
+		for (int i = 0; i < 2; i++)
+		{
+			str += *(value_ + 2 + i);
+		}
+
+		str += " S: ";
+
+		for (int i = 0; i < 9; i++)
+		{
+			str += *(value_ + 4 + i);
+		}
+		break;
 	}
 
 	return str;

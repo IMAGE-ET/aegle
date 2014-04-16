@@ -13,6 +13,8 @@ Created March 6th 2014
 #include <stdlib.h>
 #include <string>
 
+#include "../../dicom/DICOM.h"
+#include "../../dicom/Sequence.h"
 #include "../../dicom/Tag.h"
 #include "../../dicom/TagDictionary.h"
 
@@ -34,8 +36,13 @@ class DICOMParser
 		bool isValid(std::ifstream *f, DICOM *d);
 		bool isValid(std::ifstream *f, Tag *t);
 
+		Tag_Description parseGroup(std::ifstream *f);
+		unsigned int parseLength(std::ifstream *f, Value_Representation vr);
 		bool parsePreamble(std::ifstream *f, DICOM *d);
 		bool parseTag(std::ifstream *f, Tag *t);
+		void parseValue(std::ifstream *f, Tag *t);
+		void parseValue(std::ifstream *f, Tag *t, unsigned int length);
+		Value_Representation parseValueRepresentation(std::ifstream *f);
 
 		int toInt(char c0, char c1);
 		int toInt(char c0, char c1, char c2, char c3);

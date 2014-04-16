@@ -338,7 +338,7 @@ void TagDictionary::createVrEnumDictionary()
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x0000464C, FL));
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004644, FD));
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004953, IS));
-	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004C00, LO));
+	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004C4F, LO));
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004C54, LT));
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004F42, OB));
 	vrEnumDictionary_.insert(std::pair<int, Value_Representation>(0x00004F46, OF));
