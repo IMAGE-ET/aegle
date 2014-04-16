@@ -34,11 +34,13 @@ class DICOMParser
 		int getLength(Value_Representation vr);
 
 		bool isValid(std::ifstream *f, DICOM *d);
+		bool isValid(std::ifstream *f, Sequence *s);
 		bool isValid(std::ifstream *f, Tag *t);
 
 		Tag_Description parseGroup(std::ifstream *f);
 		unsigned int parseLength(std::ifstream *f, Value_Representation vr);
 		bool parsePreamble(std::ifstream *f, DICOM *d);
+		bool parseSequence(std::ifstream *f, Sequence *s);
 		bool parseTag(std::ifstream *f, Tag *t);
 		void parseValue(std::ifstream *f, Tag *t);
 		void parseValue(std::ifstream *f, Tag *t, unsigned int length);

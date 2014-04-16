@@ -10,6 +10,8 @@ Created March 6th 2014
 #include <string>
 #include <vector>
 
+#include "Sequence.h"
+
 #include "../util/dicomparser/DICOMParser.h"
 
 #include "TagDictionary.h"
@@ -25,6 +27,7 @@ class DICOM
 
 		void setPreamble(char *pa);
 
+		void addSequence(Sequence s) const;
 		void addTag(Tag t) const;
 		
 		static const int SIZE_OF_GROUP_TAG = 4;

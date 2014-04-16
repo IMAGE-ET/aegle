@@ -55,17 +55,23 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			// parse the value representation
 			value = toInt(buff[DICOM::SIZE_OF_GROUP_TAG], buff[DICOM::SIZE_OF_GROUP_TAG + 1]);
 			vr = toValueRepresentation(value);
-
-			std::cout << "Value Representation: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << value;
-			std::cout << " - " << td_.toVrName(value) << std::endl;
-
-			delete buff;
 			
+			delete buff;
+
 			f.seekg(-6, std::ios_base::cur);
 
-			Tag t;
-			ret = parseTag(&f, &t);
-			d->addTag(t);
+			if (vr == SQ)
+			{
+				Sequence s;
+				ret = parseSequence(&f, &s);
+				d->addSequence(s);
+			}
+			else
+			{
+				Tag t;
+				ret = parseTag(&f, &t);
+				d->addTag(t);
+			}
 		}
 
 		char *groupBuff = new char[20];
@@ -101,6 +107,17 @@ int DICOMParser::getLength(Value_Representation vr)
 bool DICOMParser::isValid(std::ifstream *f, DICOM *d)
 {
 	if (f == NULL || d == NULL || !f->is_open()) 
+	{
+		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool DICOMParser::isValid(std::ifstream *f, Sequence *s)
+{
+	if (f == NULL || s == NULL || !f->is_open()) 
 	{
 		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
 		return false;
@@ -205,6 +222,52 @@ bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
 	return true;
 }
 
+bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
+{
+	std::cout << "--- PARSING SEQUENCE" << std::endl;
+	
+	// check to see if null parameters were passed in
+	if (!isValid(f, s)) 
+	{
+		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
+		return false;
+	}
+
+	// parse the tag description
+	Tag_Description td;
+	td = parseGroup(f);
+
+	s->setTagDescription(td);
+
+	// parse the value representation
+	Value_Representation vr;
+	vr = parseValueRepresentation(f);
+
+	s->setValueRepresentation(vr);
+
+	// only sequences can be parsed by this process
+	if (vr != SQ)
+	{
+		return false;
+	}
+
+	// burn through reserved bytes
+	char *burnBuff = new char[2];
+	// read in the group and element
+	f->read(burnBuff, 2);
+	delete burnBuff;
+
+	// parse the length
+	unsigned int length;
+	length = parseLength(f, vr);
+
+	s->setLength(length);
+
+	std::cout << "--- END OF SEQUENCE" << std::endl;
+
+	return true;
+}
+
 bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 {	
 	std::cout << "--- PARSING TAG" << std::endl;
@@ -235,13 +298,15 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 		break;
 	case OB:
 	case OW:
-	case SQ:
 	case UN:
 		char *burnBuff = new char[2];
 		// read in the group and element
 		f->read(burnBuff, 2);
 		delete burnBuff;
 		break;
+	case SQ:
+		// Specially sequence parsing process
+		return false;
 	}
 
 	// parse the length
@@ -256,7 +321,7 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	return true;
 }
 
-void parseValue(std::ifstream *f, Tag *t)
+void DICOMParser::parseValue(std::ifstream *f, Tag *t)
 {
 	char *valueBuff = new char[t->getLength()];
 
@@ -271,7 +336,7 @@ void parseValue(std::ifstream *f, Tag *t)
 	delete valueBuff;
 }
 
-void parseValue(std::ifstream *f, Tag *t, unsigned int length)
+void DICOMParser::parseValue(std::ifstream *f, Tag *t, unsigned int length)
 {
 	char *valueBuff = new char[length];
 
