@@ -14,8 +14,6 @@ Created March 11th 2014
 #include <string>
 #include <array>
 
-using namespace std;
-
 static const int VECTOR_SIZE = 3;
 static const int NUM_VERTICES = 3;
 static const int NUM_COORDINATES = 3;
@@ -26,8 +24,8 @@ typedef struct {
     float z;
 } vertex;
 
-typedef array<float,VECTOR_SIZE> normal;
-typedef array<vertex,NUM_VERTICES> vertices;
+typedef std::array<float,VECTOR_SIZE> normal;
+typedef std::array<vertex,NUM_VERTICES> vertices;
 
 
 class Facet

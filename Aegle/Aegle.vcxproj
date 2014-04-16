@@ -20,8 +20,6 @@
     <ClCompile Include="src\stl\Facet.cpp" />
     <ClCompile Include="src\stl\STL.cpp" />
     <ClCompile Include="src\stl\STLWriter.cpp" />
-    <ClCompile Include="src\stl\STLWriterASCII.cpp" />
-    <ClCompile Include="src\stl\STLWriterBinary.cpp" />
     <ClCompile Include="src\util\dicomparser\DICOMParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,8 +33,6 @@
     <ClInclude Include="src\stl\Facet.h" />
     <ClInclude Include="src\stl\STL.h" />
     <ClInclude Include="src\stl\STLWriter.h" />
-    <ClInclude Include="src\stl\STLWriterASCII.h" />
-    <ClInclude Include="src\stl\STLWriterBinary.h" />
     <ClInclude Include="src\util\dicomparser\DICOMParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
