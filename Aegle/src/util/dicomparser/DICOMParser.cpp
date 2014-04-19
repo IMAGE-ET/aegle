@@ -43,7 +43,7 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			return false;
 		}
 
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 35; i++)
 		{
 			char *buff = new char[DICOM::SIZE_OF_GROUP_TAG + DICOM::SIZE_OF_VR];
 			Value_Representation vr;
@@ -263,6 +263,18 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 
 	s->setLength(length);
 
+	int startPos = f->tellg();
+	int curPos = f->tellg();
+
+	while(curPos < startPos + length)
+	{
+		Tag t;
+		parseTag(f, &t);
+		s->addTag(t);
+
+		curPos = f->tellg();
+	}
+
 	std::cout << "--- END OF SEQUENCE" << std::endl;
 
 	return true;
@@ -299,10 +311,12 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	case OB:
 	case OW:
 	case UN:
-		char *burnBuff = new char[2];
-		// read in the group and element
-		f->read(burnBuff, 2);
-		delete burnBuff;
+		{
+			char *burnBuff = new char[2];
+			// read in the group and element
+			f->read(burnBuff, 2);
+			delete burnBuff;
+		}
 		break;
 	case SQ:
 		// Specially sequence parsing process
