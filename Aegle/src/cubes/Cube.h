@@ -35,7 +35,15 @@ public:
      * @Returns the string form of this cube.
      */
     std::string toString();
-
+    
+    /* @Desc: Returns the compute edge ebtween the two specified vertices
+     * @Params a, b - numbers corresponding to the edges 
+     * @Returns the edge vector
+     * Note: I may change this to a bool return value and pass in a vector 
+     *       to modify, in order to account for does edge exist or not.
+     */
+    vector getEdgeBetween(const int& a, const int& b);
+    
 private:
 
     /* @Desc Given two vertices, compute the point on the edge
