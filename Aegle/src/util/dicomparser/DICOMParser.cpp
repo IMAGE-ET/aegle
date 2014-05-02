@@ -252,10 +252,10 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 	}
 
 	// burn through reserved bytes
-	char *burnBuff = new char[2];
+	char *burnBuffA = new char[2];
 	// read in the group and element
-	f->read(burnBuff, 2);
-	delete burnBuff;
+	f->read(burnBuffA, 2);
+	delete burnBuffA;
 
 	// parse the length
 	unsigned int length;
@@ -263,10 +263,16 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 
 	s->setLength(length);
 
+	// burn through reserved bytes
+	// TODO: research these bytes
+	char *burnBuffB = new char[8];
+	// read in the group and element
+	f->read(burnBuffB, 8);
+
 	int startPos = f->tellg();
 	int curPos = f->tellg();
 
-	while(curPos < startPos + length)
+	while(curPos < startPos + length - 8)
 	{
 		Tag t;
 		parseTag(f, &t);
@@ -401,8 +407,14 @@ int DICOMParser::toInt(char c0, char c1, char c2, char c3)
 	//@TODO: There has got to be a more elegant way
 	//@TODO: Check that eindianess is correct
 
-	int val = 0x00000000;
-	val |= c0 << 24 | c1 << 16 | c2 << 8 | c3;
+	unsigned int val = 0;
+	unsigned char charArr[4] = {c0, c1, c2, c3};
+
+	for (int i = 0; i < 4; i++)
+	{
+		val = val << 8;
+		val += charArr[i];
+	}
 
 	return val;
 }

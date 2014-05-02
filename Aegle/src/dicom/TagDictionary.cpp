@@ -128,6 +128,7 @@ void TagDictionary::createTdEnumDictionary()
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00020012, IMPLEMENTATION_CLASS_UID));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00020013, IMPLEMENTATION_VERSION_NAME));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00080080, INSTITUTION_NAME));
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0xFFFEE000, ITEM));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280107, LARGEST_IMAGE_PIXEL_VALUE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00282110, LOSSY_IMAGE_COMPRESSION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00282112, LOSSY_IMAGE_COMPRESSION_RATIO));
@@ -243,6 +244,7 @@ void TagDictionary::createTdNameDictionary()
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(IMPLEMENTATION_CLASS_UID, "IMPLEMENTATION_CLASS_UID"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(IMPLEMENTATION_VERSION_NAME, "IMPLEMENTATION_VERSION_NAME"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(INSTITUTION_NAME, "INSTITUTION_NAME"));
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ITEM, "ITEM"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(LARGEST_IMAGE_PIXEL_VALUE, "LARGEST_IMAGE_PIXEL_VALUE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(LOSSY_IMAGE_COMPRESSION, "LOSSY_IMAGE_COMPRESSION"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(LOSSY_IMAGE_COMPRESSION_RATIO, "LOSSY_IMAGE_COMPRESSION_RATIO"));
