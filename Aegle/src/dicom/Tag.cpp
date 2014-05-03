@@ -90,6 +90,11 @@ void Tag::setTagDescription(Tag_Description td)
 
 void Tag::setValue(char* buff)
 {
+	if (buff == NULL)
+	{
+		return;
+	}
+
 	if (value_ != NULL)
 	{
 		delete value_;

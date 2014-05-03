@@ -160,8 +160,8 @@ void TagDictionary::createTdEnumDictionary()
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00181030, PROTOCOL_NAME));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081140, REFERENCED_IMAGE_SEQUENCE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081120, REFERENCED_PATIENT_SEQUENCE));
-	//REFERENCED_SOP_CLASS_UID,                     
-	//REFERENCED_SOP_INSTANCE_UID,                    
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081150, REFERENCED_SOP_CLASS_UID));                    
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081155, REFERENCED_SOP_INSTANCE_UID));                    
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081111, REFERENCED_STUDY_COMPONENT_SEQUENCE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081110, REFERENCED_STUDY_SEQUENCE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00080090, REFERRING_PHYSICIANS_NAME));
@@ -214,7 +214,7 @@ void TagDictionary::createTdEnumDictionary()
 void TagDictionary::createTdNameDictionary()
 {
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACCESSION_NUMBER, "ACCESSION_NUMBER"));
-	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACCESSION_NUMBER, "ACCESSION_NUMBER"));
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACQUISITION_DATE, "ACQUISITION_DATE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACQUISITION_MATRIX, "ACQUISITION_MATRIX"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACQUISITION_NUMBER, "ACQUISITION_NUMBER"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ACQUISITION_TIME, "ACQUISITION_TIME"));
@@ -276,8 +276,8 @@ void TagDictionary::createTdNameDictionary()
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PROTOCOL_NAME, "PROTOCOL_NAME"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_IMAGE_SEQUENCE, "REFERENCED_IMAGE_SEQUENCE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_PATIENT_SEQUENCE, "REFERENCED_PATIENT_SEQUENCE"));
-	//REFERENCED_SOP_CLASS_UID,                     
-	//REFERENCED_SOP_INSTANCE_UID,                    
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_SOP_CLASS_UID, "REFERENCED_SOP_CLASS_UID"));
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_SOP_INSTANCE_UID, "REFERENCED_SOP_INSTANCE_UID"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_STUDY_COMPONENT_SEQUENCE, "REFERENCED_STUDY_COMPONENT_SEQUENCE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_STUDY_SEQUENCE, "REFERENCED_STUDY_SEQUENCE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERRING_PHYSICIANS_NAME, "REFERRING_PHYSICIANS_NAME"));

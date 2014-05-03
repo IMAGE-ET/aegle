@@ -43,7 +43,7 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			return false;
 		}
 
-		for (int i = 0; i < 35; i++)
+		for (int i = 0; i < 40; i++)
 		{
 			char *buff = new char[DICOM::SIZE_OF_GROUP_TAG + DICOM::SIZE_OF_VR];
 			Value_Representation vr;
@@ -74,9 +74,19 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			}
 		}
 
-		char *groupBuff = new char[20];
+		char *groupBuff = new char[10];
 
-		f.read(groupBuff, 20);
+		for (int i = 0; i < 16; i++)
+		{
+			f.read(groupBuff, 10);
+
+			for (int j = 0; j < 10; j++)
+			{
+				std::cout << std::dec << i << j << "-" << "0x" << std::setfill('0') << std::hex <<  std::setw(2) << int(0x000000FF & groupBuff[j]) << " ";
+			}
+
+			std::cout << std::endl;
+		}
 
 		delete groupBuff;
 
@@ -252,10 +262,10 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 	}
 
 	// burn through reserved bytes
-	char *burnBuffA = new char[2];
+	char *burnBuff = new char[2];
 	// read in the group and element
-	f->read(burnBuffA, 2);
-	delete burnBuffA;
+	f->read(burnBuff, 2);
+	delete burnBuff;
 
 	// parse the length
 	unsigned int length;
@@ -263,16 +273,10 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 
 	s->setLength(length);
 
-	// burn through reserved bytes
-	// TODO: research these bytes
-	char *burnBuffB = new char[8];
-	// read in the group and element
-	f->read(burnBuffB, 8);
-
 	int startPos = f->tellg();
 	int curPos = f->tellg();
 
-	while(curPos < startPos + length - 8)
+	while(curPos < startPos + length)
 	{
 		Tag t;
 		parseTag(f, &t);
@@ -303,9 +307,17 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 
 	t->setTagDescription(td);
 
+	
 	// parse the value representation
 	Value_Representation vr;
-	vr = parseValueRepresentation(f);
+	if (t->getTagDescription() != ITEM)
+	{
+		vr = parseValueRepresentation(f);
+	}
+	else
+	{
+		vr = UN;
+	}
 
 	t->setValueRepresentation(vr);
 
@@ -316,7 +328,6 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 		break;
 	case OB:
 	case OW:
-	case UN:
 		{
 			char *burnBuff = new char[2];
 			// read in the group and element
@@ -333,10 +344,16 @@ bool DICOMParser::parseTag(std::ifstream *f, Tag *t)
 	unsigned int length;
 	length = parseLength(f, vr);
 
-	t->setLength(length);
+	if (t->getTagDescription() != ITEM)
+	{
+		t->setLength(length);
+	}
 
 	// parse the value
-	parseValue(f, t);
+	if (t->getTagDescription() != ITEM)
+	{
+		parseValue(f, t);
+	}
 
 	return true;
 }
