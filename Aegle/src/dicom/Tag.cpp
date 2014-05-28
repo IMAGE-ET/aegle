@@ -102,7 +102,7 @@ void Tag::setValue(char* buff)
 
 	value_ = new char[length_];
 
-	for(int i = 0; i < length_; i++)
+	for(unsigned int i = 0; i < length_; i++)
 	{
 		value_[i] = *(buff + i);
 	}
@@ -142,7 +142,7 @@ std::string Tag::valueToString()
 	case PN:
 	case SH:
 	case UI:
-		for (int i = 0; i < length_; i++)
+		for (unsigned int i = 0; i < length_; i++)
 		{
 			str += *(value_ + i);
 		}

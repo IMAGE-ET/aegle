@@ -113,30 +113,7 @@ int DICOMParser::getLength(Value_Representation vr)
 		return DICOM::SIZE_OF_LENGTHB;
 	}
 }
-
-bool DICOMParser::isValid(std::ifstream *f, DICOM *d)
-{
-	if (f == NULL || d == NULL || !f->is_open()) 
-	{
-		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
-		return false;
-	}
-
-	return true;
-}
-
-bool DICOMParser::isValid(std::ifstream *f, Sequence *s)
-{
-	if (f == NULL || s == NULL || !f->is_open()) 
-	{
-		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
-		return false;
-	}
-
-	return true;
-}
-
-bool DICOMParser::isValid(std::ifstream *f, Tag *t)
+template<typename T> bool DICOMParser::isValid(std::ifstream *f, T t)
 {
 	if (f == NULL || t == NULL || !f->is_open()) 
 	{
@@ -273,8 +250,8 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 
 	s->setLength(length);
 
-	int startPos = f->tellg();
-	int curPos = f->tellg();
+	unsigned long startPos = (unsigned long)f->tellg();
+	unsigned long curPos = (unsigned long)f->tellg();
 
 	while(curPos < startPos + length)
 	{
@@ -282,7 +259,7 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 		parseTag(f, &t);
 		s->addTag(t);
 
-		curPos = f->tellg();
+		curPos = (unsigned long)f->tellg();
 	}
 
 	std::cout << "--- END OF SEQUENCE" << std::endl;

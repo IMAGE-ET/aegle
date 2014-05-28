@@ -1,58 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\dicom">
-      <UniqueIdentifier>{4ec8bf3d-de51-40dc-a0ac-c42d1bdbd6db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\util">
-      <UniqueIdentifier>{538707ad-ae4e-49d5-9e30-04375fc3a6d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\util\dicomparser">
-      <UniqueIdentifier>{c9b19798-0924-4c28-8476-a641c460f64a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\stl">
-      <UniqueIdentifier>{d656ff59-f7bd-4ac8-b69d-15d5999fecb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\stl">
-      <UniqueIdentifier>{2093e946-cd5b-4c13-b46f-a74889a80ba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\dicom">
-      <UniqueIdentifier>{6cc25b21-9c8c-408c-b428-5a84be1ee20f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\util\stlwriter">
-      <UniqueIdentifier>{7022a9a8-c70a-4401-ae71-499e9fa09f3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\util">
-      <UniqueIdentifier>{66827dbb-f013-43fc-a415-e3e46a0f88cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\util\dicomparser">
-      <UniqueIdentifier>{26f1ecfe-c132-4695-aafc-c37e1123efe1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\util\stlwriter">
-      <UniqueIdentifier>{8af8bb01-0023-492e-8123-28e985a198bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cubes">
-      <UniqueIdentifier>{477486fe-1cdf-4b04-a843-8eed6317a10d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cubes">
-      <UniqueIdentifier>{72cf5daf-f565-499d-b5b2-a967ab65ca40}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cubes\Cube.cpp">
+      <Filter>Source Files\cubes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cubes\Facet.cpp">
+      <Filter>Source Files\cubes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cubes\MarchingCubes.cpp">
+      <Filter>Source Files\cubes</Filter>
     </ClCompile>
     <ClCompile Include="src\dicom\DICOM.cpp">
       <Filter>Source Files\dicom</Filter>
@@ -60,23 +19,20 @@
     <ClCompile Include="src\dicom\MRIDICOM.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
-    <ClCompile Include="src\util\dicomparser\DICOMParser.cpp">
-      <Filter>Source Files\util\dicomparser</Filter>
-    </ClCompile>
-    <ClCompile Include="src\dicom\TagDictionary.cpp">
+    <ClCompile Include="src\dicom\Sequence.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
     <ClCompile Include="src\dicom\Tag.cpp">
+      <Filter>Source Files\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dicom\TagDictionary.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
     <ClCompile Include="src\stl\STL.cpp">
       <Filter>Source Files\stl</Filter>
     </ClCompile>
     <ClCompile Include="src\stl\STLWriter.cpp">
-      <Filter>Source Files\util\stlwriter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cubes\Cube.cpp">
-      <Filter>Source Files\cubes</Filter>
+      <Filter>Source Files\stl</Filter>
     </ClCompile>
     <ClCompile Include="src\util\Matrix4.cpp">
       <Filter>Source Files\util</Filter>
@@ -84,42 +40,43 @@
     <ClCompile Include="src\util\util.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
-    <ClCompile Include="src\cubes\Facet.cpp">
-      <Filter>Source Files\cubes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MarchingCubes.cpp">
-      <Filter>Source Files</Filter>
-    <ClCompile Include="src\dicom\Sequence.cpp">
-      <Filter>Source Files\dicom</Filter>
+    <ClCompile Include="src\util\dicomparser\DICOMParser.cpp">
+      <Filter>Source Files\util\dicomparser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\stl\STL.h">
-      <Filter>Header Files\stl</Filter>
+    <ClInclude Include="src\cubes\Cube.h">
+      <Filter>Header Files\cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cubes\Facet.h">
+      <Filter>Header Files\cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cubes\MarchingCubes.h">
+      <Filter>Header Files\cubes</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\DICOM.h">
-      <Filter>Header Files\dicom</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dicom\MRIDICOM.h">
       <Filter>Header Files\dicom</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\TagDescription.h">
       <Filter>Header Files\dicom</Filter>
     </ClInclude>
-    <ClInclude Include="src\dicom\Tag.h">
-      <Filter>Header Files\dicom</Filter>
-    </ClInclude>
     <ClInclude Include="src\dicom\TagDictionary.h">
       <Filter>Header Files\dicom</Filter>
     </ClInclude>
+    <ClInclude Include="src\dicom\ValueRepresentation.h">
+      <Filter>Header Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\MRIDICOM.h">
+      <Filter>Header Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\STL.h">
+      <Filter>Header Files\stl</Filter>
+    </ClInclude>
     <ClInclude Include="src\stl\STLWriter.h">
-      <Filter>Header Files\util\stlwriter</Filter>
+      <Filter>Header Files\stl</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\dicomparser\DICOMParser.h">
-      <Filter>Header Files\util\dicomparser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cubes\Cube.h">
-      <Filter>Header Files\cubes</Filter>
+    <ClInclude Include="src\dicom\Tag.h">
+      <Filter>Header Files\dicom</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Matrix4.h">
       <Filter>Header Files\util</Filter>
@@ -127,16 +84,49 @@
     <ClInclude Include="src\util\util.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
-    <ClInclude Include="src\cubes\Facet.h">
-      <Filter>Header Files\cubes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MarchingCubes.h">
-      <Filter>Header Files</Filter>
-    <ClInclude Include="src\dicom\ValueRepresentation.h">
-      <Filter>Source Files\dicom</Filter>
-    </ClInclude>
     <ClInclude Include="src\dicom\Sequence.h">
       <Filter>Header Files\dicom</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\dicomparser\DICOMParser.h">
+      <Filter>Header Files\util\dicomparser</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{679f3b0c-399d-427b-a5a3-14deb45c2a83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5eb64353-3724-4dd5-9427-8cf2886615b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cubes">
+      <UniqueIdentifier>{a784da96-f94b-4474-814f-45203d43c566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dicom">
+      <UniqueIdentifier>{ccbd9490-3137-4fc9-b003-8bf44fe0c782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\stl">
+      <UniqueIdentifier>{c65d6b02-74f0-41f9-85e8-807be715ca48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{09d6929f-434e-40f3-a46f-fc26ca035e82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util\dicomparser">
+      <UniqueIdentifier>{292f03d6-e570-462b-9a11-4259aa704275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cubes">
+      <UniqueIdentifier>{40504a2d-e637-4e09-8c32-bf78f607e4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dicom">
+      <UniqueIdentifier>{e97a179c-ff22-462f-91fa-aa4da867a481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stl">
+      <UniqueIdentifier>{11220f3a-8040-4b4b-b4e9-8b613127d152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{1194b9e8-bba1-470a-8909-edcf6b596840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util\dicomparser">
+      <UniqueIdentifier>{c4f405ed-ff23-497e-9f37-88bc90f03828}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
