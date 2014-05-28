@@ -89,6 +89,8 @@
     </ClCompile>
     <ClCompile Include="src\MarchingCubes.cpp">
       <Filter>Source Files</Filter>
+    <ClCompile Include="src\dicom\Sequence.cpp">
+      <Filter>Source Files\dicom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +132,11 @@
     </ClInclude>
     <ClInclude Include="src\MarchingCubes.h">
       <Filter>Header Files</Filter>
+    <ClInclude Include="src\dicom\ValueRepresentation.h">
+      <Filter>Source Files\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dicom\Sequence.h">
+      <Filter>Header Files\dicom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
