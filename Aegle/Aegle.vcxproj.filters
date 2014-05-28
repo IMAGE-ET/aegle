@@ -43,6 +43,12 @@
     <Filter Include="Header Files\util\stlwriter">
       <UniqueIdentifier>{8af8bb01-0023-492e-8123-28e985a198bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\cubes">
+      <UniqueIdentifier>{477486fe-1cdf-4b04-a843-8eed6317a10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cubes">
+      <UniqueIdentifier>{72cf5daf-f565-499d-b5b2-a967ab65ca40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -63,24 +69,32 @@
     <ClCompile Include="src\dicom\Tag.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
-    <ClCompile Include="src\stl\Facet.cpp">
-      <Filter>Source Files\stl</Filter>
-    </ClCompile>
     <ClCompile Include="src\stl\STL.cpp">
       <Filter>Source Files\stl</Filter>
     </ClCompile>
     <ClCompile Include="src\stl\STLWriter.cpp">
       <Filter>Source Files\util\stlwriter</Filter>
     </ClCompile>
+    <ClCompile Include="src\cubes\Cube.cpp">
+      <Filter>Source Files\cubes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\Matrix4.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\util.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cubes\Facet.cpp">
+      <Filter>Source Files\cubes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MarchingCubes.cpp">
+      <Filter>Source Files</Filter>
     <ClCompile Include="src\dicom\Sequence.cpp">
       <Filter>Source Files\dicom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\stl\STL.h">
-      <Filter>Header Files\stl</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stl\Facet.h">
       <Filter>Header Files\stl</Filter>
     </ClInclude>
     <ClInclude Include="src\dicom\DICOM.h">
@@ -104,6 +118,20 @@
     <ClInclude Include="src\util\dicomparser\DICOMParser.h">
       <Filter>Header Files\util\dicomparser</Filter>
     </ClInclude>
+    <ClInclude Include="src\cubes\Cube.h">
+      <Filter>Header Files\cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Matrix4.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\util.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cubes\Facet.h">
+      <Filter>Header Files\cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MarchingCubes.h">
+      <Filter>Header Files</Filter>
     <ClInclude Include="src\dicom\ValueRepresentation.h">
       <Filter>Source Files\dicom</Filter>
     </ClInclude>

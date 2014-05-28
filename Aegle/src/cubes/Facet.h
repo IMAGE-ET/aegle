@@ -22,11 +22,11 @@ typedef struct {
     float x;
     float y;
     float z;
+    float weight;
 } vertex;
 
 typedef std::array<float,VECTOR_SIZE> normal;
 typedef std::array<vertex,NUM_VERTICES> vertices;
-
 
 class Facet
 {
