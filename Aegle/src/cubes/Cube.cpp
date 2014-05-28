@@ -41,7 +41,18 @@ int Cube::determineCase(const float& threshold)
 
 vector Cube::computeEdgeBetween(const vertex& v1, const vertex& v2)
 {
+    double weight = (value_ - v1.weight)/(v2.weight - v1.weight);
 
+    vector retVal;
+    if(weight >= 0 && weight <= 1) 
+    {
+        // interpolated edge is v1 plus a portion of the difference between them
+        retVal[0] = v1.x + ((v2.x - v1.x) * weight);
+        retVal[1] = v1.y + ((v2.y - v1.y) * weight);
+        retVal[2] = v1.z + ((v2.z - v1.z) * weight);
+    }
+
+    return retVal;
 }
 
 void Cube::computeEdges()
