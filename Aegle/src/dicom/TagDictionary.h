@@ -12,6 +12,7 @@ Created March 10th 2014
 
 #include "Tag.h"
 #include "TagDescription.h"
+#include "ValueRepresentation.h"
 
 class TagDictionary 
 {
@@ -20,16 +21,23 @@ class TagDictionary
 		TagDictionary();
 
 		Tag_Description searchDescription(int value);
-		std::string toString(Tag_Description tagDescription);
-		std::string toString(int value);
+		Value_Representation searchVr(int value);
+		std::string toString(Tag_Description td);
+		std::string toString(Value_Representation vr);
+		std::string toTagName(int value);
+		std::string toVrName(int value);
 
 	private:
 
-		void createEnumDictionary();
-		void createNameDictionary();
+		void createTdEnumDictionary();
+		void createTdNameDictionary();
+		void createVrEnumDictionary();
+		void createVrNameDictionary();
 
-		static std::map<int, Tag_Description> enumDictionary_;
-		static std::map<Tag_Description, std::string> nameDictionary_;
+		static std::map<int, Tag_Description> tdEnumDictionary_;
+		static std::map<Tag_Description, std::string> tdNameDictionary_;
+		static std::map<int, Value_Representation> vrEnumDictionary_;
+		static std::map<Value_Representation, std::string> vrNameDictionary_;
 };
 
 #endif /*TAGDICTIONARY_H*/

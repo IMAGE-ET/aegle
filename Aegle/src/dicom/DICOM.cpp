@@ -16,7 +16,6 @@ DICOM::DICOM()
 
 DICOM::~DICOM() 
 {
-		
 }
 
 /*-----------------------------------------------------------------------------
@@ -40,3 +39,12 @@ void DICOM::setPreamble(char *pa)
 /*-----------------------------------------------------------------------------
 OTHER
 -----------------------------------------------------------------------------*/
+void DICOM::addSequence(Sequence s) const
+{
+	// TODO: implement
+}
+
+void DICOM::addTag(Tag t) const
+{
+	// TODO: implement
+}
