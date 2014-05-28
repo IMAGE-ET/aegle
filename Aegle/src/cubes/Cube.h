@@ -1,3 +1,8 @@
+/* @file Cube.h
+ * 
+ *  Header file for the cube encapsulation meant for the marching cubes algorithm
+ */
+
 #ifndef CUBE_H
 #define CUBE_H
 
@@ -26,29 +31,37 @@ public:
     // Destructors
     ~Cube(void);
 
-    /* @Desc: Return a string that has the cube's indices and the vertex locations
-     * @Returns: the string form of this cube.
+    /* @Desc Return a string that has the cube's indices and the vertex locations
+     * @Returns the string form of this cube.
      */
     std::string toString();
-
+    
+    /* @Desc: Returns the compute edge ebtween the two specified vertices
+     * @Params a, b - numbers corresponding to the edges 
+     * @Returns the edge vector
+     * Note: I may change this to a bool return value and pass in a vector 
+     *       to modify, in order to account for does edge exist or not.
+     */
+    vector getEdgeBetween(const int& a, const int& b);
+    
 private:
 
-    /* @Desc: Given two vertices, compute the point on the edge
+    /* @Desc Given two vertices, compute the point on the edge
      *          whose weight equals the specified value
-     * @Params: v1, v2 - two vertices of the edge 
-     * @Returns: a vector of size 3
+     * @Params v1, v2 - two vertices of the edge 
+     * @Returns a vector of size 3
      */
     vector computeEdgeBetween(const vertex& v1, const vertex& v2);
 
-    /* @Desc: For all 12 edges, compute the edges
+    /* @Desc For all 12 edges, compute the edges
      */
     void computeEdges();
 
-    /* @Desc: Given a threshold, calculate the 8 bit integer
+    /* @Desc Given a threshold, calculate the 8 bit integer
      *         where each bit represents a vertex and it is
      *         set when comparing the vertex to a thershold
-     * @Params: threshold - the threshold value to use to compute case
-     * @Returns: the case number for this cube
+     * @Params threshold - the threshold value to use to compute case
+     * @Returns the case number for this cube
      */
     int determineCase(const float& threshold);
 
