@@ -273,8 +273,8 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 
 	s->setLength(length);
 
-	int startPos = f->tellg();
-	int curPos = f->tellg();
+	unsigned long startPos = (unsigned long)f->tellg();
+	unsigned long curPos = (unsigned long)f->tellg();
 
 	while(curPos < startPos + length)
 	{
@@ -282,7 +282,7 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 		parseTag(f, &t);
 		s->addTag(t);
 
-		curPos = f->tellg();
+		curPos = (unsigned long)f->tellg();
 	}
 
 	std::cout << "--- END OF SEQUENCE" << std::endl;
