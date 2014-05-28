@@ -18,6 +18,7 @@
     <ClCompile Include="src\dicom\Tag.cpp" />
     <ClCompile Include="src\dicom\TagDictionary.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MarchingCubes.cpp" />
     <ClCompile Include="src\stl\STL.cpp" />
     <ClCompile Include="src\stl\STLWriter.cpp" />
     <ClCompile Include="src\util\dicomparser\DICOMParser.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="src\dicom\Tag.h" />
     <ClInclude Include="src\dicom\TagDescription.h" />
     <ClInclude Include="src\dicom\TagDictionary.h" />
+    <ClInclude Include="src\MarchingCubes.h" />
     <ClInclude Include="src\stl\STL.h" />
     <ClInclude Include="src\stl\STLWriter.h" />
     <ClInclude Include="src\util\dicomparser\DICOMParser.h" />

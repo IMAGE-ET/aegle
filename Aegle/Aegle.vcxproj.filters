@@ -87,6 +87,9 @@
     <ClCompile Include="src\cubes\Facet.cpp">
       <Filter>Source Files\cubes</Filter>
     </ClCompile>
+    <ClCompile Include="src\MarchingCubes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\stl\STL.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="src\cubes\Facet.h">
       <Filter>Header Files\cubes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MarchingCubes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
