@@ -48,8 +48,8 @@ vector Cube::computeEdgeBetween(const vertex& v1, const vertex& v2)
     {
         // interpolated edge is v1 plus a portion of the difference between them
         retVal[0] = v1.x + ((v2.x - v1.x) * weight);
-        retVal[1] = v1.x + ((v2.y - v1.y) * weight);
-        retVal[2] = v1.x + ((v2.z - v1.z) * weight);
+        retVal[1] = v1.y + ((v2.y - v1.y) * weight);
+        retVal[2] = v1.z + ((v2.z - v1.z) * weight);
     }
 
     return retVal;
