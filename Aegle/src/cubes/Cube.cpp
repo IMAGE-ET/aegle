@@ -64,18 +64,18 @@ void Cube::computeEdges()
 
 vector Cube::getEdgeBetween(const int& a, const int& b)
 {
-    if(a = 0 && b = ) return edges_[0];
-    if(a = 1 && b = 2) return edges_[1];
-    if(a = 2 && b = 3) return edges_[2];
-    if(a = 3 && b = 0) return edges_[3];
-    if(a = 4 && b = 5) return edges_[4];
-    if(a = 5 && b = 6) return edges_[5];
-    if(a = 6 && b = 7) return edges_[6];
-    if(a = 7 && b = 4) return edges_[7];
-    if(a = 0 && b = 4) return edges_[8];
-    if(a = 1 && b = 5) return edges_[9];
-    if(a = 3 && b = 7) return edges_[10];
-    if(a = 2 && b = 6) return edges_[11];
+    if(a == 0 && b == 1) return edges_[0];
+    if(a == 1 && b == 2) return edges_[1];
+    if(a == 2 && b == 3) return edges_[2];
+    if(a == 3 && b == 0) return edges_[3];
+    if(a == 4 && b == 5) return edges_[4];
+    if(a == 5 && b == 6) return edges_[5];
+    if(a == 6 && b == 7) return edges_[6];
+    if(a == 7 && b == 4) return edges_[7];
+    if(a == 0 && b == 4) return edges_[8];
+    if(a == 1 && b == 5) return edges_[9];
+    if(a == 3 && b == 7) return edges_[10];
+    if(a == 2 && b == 6) return edges_[11];
     
     // for now if there isn't an existing edge....
     return edges_[0];
