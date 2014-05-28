@@ -11,29 +11,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cubes\Cube.cpp" />
+    <ClCompile Include="src\cubes\Facet.cpp" />
     <ClCompile Include="src\dicom\DICOM.cpp" />
     <ClCompile Include="src\dicom\MRIDICOM.cpp" />
     <ClCompile Include="src\dicom\Sequence.cpp" />
     <ClCompile Include="src\dicom\Tag.cpp" />
     <ClCompile Include="src\dicom\TagDictionary.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\stl\Facet.cpp" />
+    <ClCompile Include="src\MarchingCubes.cpp" />
     <ClCompile Include="src\stl\STL.cpp" />
     <ClCompile Include="src\stl\STLWriter.cpp" />
     <ClCompile Include="src\util\dicomparser\DICOMParser.cpp" />
+    <ClCompile Include="src\util\Matrix4.cpp" />
+    <ClCompile Include="src\util\util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cubes\Cube.h" />
+    <ClInclude Include="src\cubes\Facet.h" />
     <ClInclude Include="src\dicom\DICOM.h" />
     <ClInclude Include="src\dicom\MRIDICOM.h" />
     <ClInclude Include="src\dicom\Sequence.h" />
     <ClInclude Include="src\dicom\Tag.h" />
     <ClInclude Include="src\dicom\TagDescription.h" />
     <ClInclude Include="src\dicom\TagDictionary.h" />
+    <ClInclude Include="src\MarchingCubes.h" />
     <ClInclude Include="src\dicom\ValueRepresentation.h" />
     <ClInclude Include="src\stl\Facet.h" />
     <ClInclude Include="src\stl\STL.h" />
     <ClInclude Include="src\stl\STLWriter.h" />
     <ClInclude Include="src\util\dicomparser\DICOMParser.h" />
+    <ClInclude Include="src\util\Matrix4.h" />
+    <ClInclude Include="src\util\util.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1B4A0EAC-B003-4602-9AA8-7F46314B4D0D}</ProjectGuid>
