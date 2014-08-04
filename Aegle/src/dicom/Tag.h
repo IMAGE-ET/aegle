@@ -15,6 +15,8 @@ Created March 10th 2014
 #include "TagDescription.h"
 #include "ValueRepresentation.h"
 
+#include "../util/util.h"
+
 class Tag 
 {
 	public:
@@ -27,6 +29,7 @@ class Tag
 		Tag_Description getTagDescription() const;
 		char* getValue() const;
 		Value_Representation getValueRepresentation() const;
+		
 		unsigned long getValueUL() const;
 
 		void setLength(unsigned int len);
@@ -38,6 +41,10 @@ class Tag
 		std::string valueToString();
 
 	private:
+
+		std::string valueToDateString();
+		std::string valueToTimeString();
+		std::string valueToUnsignedShortString();
 
 		Tag_Description tagDescription_;
 		Value_Representation vr_;

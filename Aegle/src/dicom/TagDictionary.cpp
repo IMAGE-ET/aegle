@@ -149,14 +149,16 @@ void TagDictionary::createTdEnumDictionary()
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00101030, PATIENTS_WEIGHT));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00180094, PERCENT_PHASE_FIELD_OF_VIEW));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00180093, PERCENT_SAMPLING));
-	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400275, PERFORMED_PROCEDURE_STEP_DESCRIPTION));
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400254, PERFORMED_PROCEDURE_STEP_DESCRIPTION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400244, PERFORMED_PROCEDURE_STEP_START_DATE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400245, PERFORMED_PROCEDURE_STEP_START_TIME));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00181312, PHASE_ENCODING_DIRECTION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280004, PHOTOMETRIC_INTERPRETATION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00180095, PIXEL_BANDWIDTH));
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x7FE00010, PIXEL_DATA));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280103, PIXEL_REPRESENTATION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280030, PIXEL_SPACING));
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280006, PLANAR_CONFIGURATION));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00181030, PROTOCOL_NAME));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081140, REFERENCED_IMAGE_SEQUENCE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00081120, REFERENCED_PATIENT_SEQUENCE));
@@ -168,14 +170,14 @@ void TagDictionary::createTdEnumDictionary()
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00180080, REPETITION_TIME));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400275, REQUEST_ATTRIBUTES_SEQUENCE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00321060, REQUESTED_PROCEDURE_DESCRIPTION));
-	//REQUESTED_PROCEDURE_ID,                
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00401001, REQUESTED_PROCEDURE_ID));                
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00321032, REQUESTING_PHYSICIANN));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280010, ROWS));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00280002, SAMPLES_PER_PIXEL));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00181316, SAR));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00180020, SCANNING_SEQUENCE));
-	//SCHEDULED_PROCEDURE_STEP_DESCRIPTION,            
-	//SCHEDULED_PROCEDURE_STEP_ID,           
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400007, SCHEDULED_PROCEDURE_STEP_DESCRIPTION));
+	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00400009, SCHEDULED_PROCEDURE_STEP_ID));          
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00321021, SCHEDULED_STUDY_LOCATION_AE_TITLES));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00321000, SCHEDULED_STUDY_START_DATE));
 	tdEnumDictionary_.insert(std::pair<int, Tag_Description>(0x00321001, SCHEDULED_STUDY_START_TIME));
@@ -271,8 +273,10 @@ void TagDictionary::createTdNameDictionary()
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PHASE_ENCODING_DIRECTION, "PHASE_ENCODING_DIRECTION"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PHOTOMETRIC_INTERPRETATION, "PHOTOMETRIC_INTERPRETATION"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PIXEL_BANDWIDTH, "PIXEL_BANDWIDTH"));
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PIXEL_DATA, "PIXEL_DATA"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PIXEL_REPRESENTATION, "PIXEL_REPRESENTATION"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PIXEL_SPACING, "PIXEL_SPACING"));
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PLANAR_CONFIGURATION, "PLANAR_CONFIGURATION"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(PROTOCOL_NAME, "PROTOCOL_NAME"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_IMAGE_SEQUENCE, "REFERENCED_IMAGE_SEQUENCE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REFERENCED_PATIENT_SEQUENCE, "REFERENCED_PATIENT_SEQUENCE"));
@@ -284,14 +288,14 @@ void TagDictionary::createTdNameDictionary()
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REPETITION_TIME, "REPETITION_TIME"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REQUEST_ATTRIBUTES_SEQUENCE, "REQUEST_ATTRIBUTES_SEQUENCE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REQUESTED_PROCEDURE_DESCRIPTION, "REQUESTED_PROCEDURE_DESCRIPTION"));
-	//REQUESTED_PROCEDURE_ID,                
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REQUESTED_PROCEDURE_ID, "REQUESTED_PROCEDURE_ID"));                
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(REQUESTING_PHYSICIANN, "REQUESTING_PHYSICIANN"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(ROWS, "ROWS"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SAMPLES_PER_PIXEL, "SAMPLES_PER_PIXEL"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SAR, "SAR"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCANNING_SEQUENCE, "SCANNING_SEQUENCE"));
-	//SCHEDULED_PROCEDURE_STEP_DESCRIPTION,            
-	//SCHEDULED_PROCEDURE_STEP_ID,           
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCHEDULED_PROCEDURE_STEP_DESCRIPTION, "SCHEDULED_PROCEDURE_STEP_DESCRIPTION"));            
+	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCHEDULED_PROCEDURE_STEP_ID, "SCHEDULED_PROCEDURE_STEP_ID"));        
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCHEDULED_STUDY_LOCATION_AE_TITLES, "SCHEDULED_STUDY_LOCATION_AE_TITLES"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCHEDULED_STUDY_START_DATE, "SCHEDULED_STUDY_START_DATE"));
 	tdNameDictionary_.insert(std::pair<Tag_Description, std::string>(SCHEDULED_STUDY_START_TIME, "SCHEDULED_STUDY_START_TIME"));
@@ -370,7 +374,7 @@ void TagDictionary::createVrNameDictionary()
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(DT, "Date Time "));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(FL, "Single Precision Floating Point"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(FD, "Double Precision Floating Point"));
-	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(IS, "Integer"));
+	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(IS, "Integer String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(LO, "Character String"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(LT, "Long Text"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(OB, "Other Byte String"));
@@ -386,5 +390,5 @@ void TagDictionary::createVrNameDictionary()
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(UI, "Uniqe Identifier"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(UL, "Unsigned Long Integer"));
 	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(US, "Unsigned Short Integer"));
-	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(UT,  "Unlimited Text"));
+	vrNameDictionary_.insert(std::pair<Value_Representation, std::string>(UT, "Unlimited Text"));
 }

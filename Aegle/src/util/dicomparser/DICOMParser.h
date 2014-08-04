@@ -18,6 +18,8 @@ Created March 6th 2014
 #include "../../dicom/Tag.h"
 #include "../../dicom/TagDictionary.h"
 
+#include "../../util/util.h"
+
 class DICOM;
 
 class DICOMParser 
@@ -37,6 +39,7 @@ class DICOMParser
 
 		Tag_Description parseGroup(std::ifstream *f);
 		unsigned int parseLength(std::ifstream *f, Value_Representation vr);
+		bool parseImage(std::ifstream *f, DICOM *d);
 		bool parsePreamble(std::ifstream *f, DICOM *d);
 		bool parseSequence(std::ifstream *f, Sequence *s);
 		bool parseTag(std::ifstream *f, Tag *t);
@@ -44,8 +47,6 @@ class DICOMParser
 		void parseValue(std::ifstream *f, Tag *t, unsigned int length);
 		Value_Representation parseValueRepresentation(std::ifstream *f);
 
-		int toInt(char c0, char c1);
-		int toInt(char c0, char c1, char c2, char c3);
 		Tag_Description toTagDescription(int value);
 		Value_Representation toValueRepresentation(int value);
 

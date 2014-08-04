@@ -15,6 +15,7 @@
     <ClCompile Include="src\cubes\Facet.cpp" />
     <ClCompile Include="src\cubes\MarchingCubes.cpp" />
     <ClCompile Include="src\dicom\DICOM.cpp" />
+    <ClCompile Include="src\dicom\DICOMImage.cpp" />
     <ClCompile Include="src\dicom\MRIDICOM.cpp" />
     <ClCompile Include="src\dicom\Sequence.cpp" />
     <ClCompile Include="src\dicom\Tag.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="src\cubes\Facet.h" />
     <ClInclude Include="src\cubes\MarchingCubes.h" />
     <ClInclude Include="src\dicom\DICOM.h" />
+    <ClInclude Include="src\dicom\DICOMImage.h" />
     <ClInclude Include="src\dicom\MRIDICOM.h" />
     <ClInclude Include="src\dicom\Sequence.h" />
     <ClInclude Include="src\dicom\Tag.h" />

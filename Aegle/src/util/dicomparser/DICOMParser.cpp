@@ -43,7 +43,7 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			return false;
 		}
 
-		for (int i = 0; i < 40; i++)
+		for (int i = 0; i < 106; i++)
 		{
 			char *buff = new char[DICOM::SIZE_OF_GROUP_TAG + DICOM::SIZE_OF_VR];
 			Value_Representation vr;
@@ -53,12 +53,12 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 			f.read(buff, DICOM::SIZE_OF_GROUP_TAG + DICOM::SIZE_OF_VR);
 
 			// parse the value representation
-			value = toInt(buff[DICOM::SIZE_OF_GROUP_TAG], buff[DICOM::SIZE_OF_GROUP_TAG + 1]);
+			value = toUnsignedInt(buff[DICOM::SIZE_OF_GROUP_TAG], buff[DICOM::SIZE_OF_GROUP_TAG + 1]);
 			vr = toValueRepresentation(value);
 			
 			delete buff;
 
-			f.seekg(-6, std::ios_base::cur);
+			f.seekg(-(DICOM::SIZE_OF_GROUP_TAG + DICOM::SIZE_OF_VR), std::ios_base::cur);
 
 			if (vr == SQ)
 			{
@@ -73,6 +73,16 @@ bool DICOMParser::parse(std::string fileName, DICOM *d)
 				d->addTag(t);
 			}
 		}
+
+		int curPos, endPos;
+
+		curPos = f.tellg();
+
+		f.seekg(0, std::ios_base::end);
+		endPos = f.tellg();
+
+		std::cout << "Cur Pos: " << curPos << " End Pos: " << endPos << std::endl;
+		std::cout << d->DICOMImagetoString() << std::endl;
 
 		char *groupBuff = new char[10];
 
@@ -113,6 +123,7 @@ int DICOMParser::getLength(Value_Representation vr)
 		return DICOM::SIZE_OF_LENGTHB;
 	}
 }
+
 template<typename T> bool DICOMParser::isValid(std::ifstream *f, T t)
 {
 	if (f == NULL || t == NULL || !f->is_open()) 
@@ -134,7 +145,7 @@ Tag_Description DICOMParser::parseGroup(std::ifstream *f)
 	f->read(groupBuff, DICOM::SIZE_OF_GROUP_TAG);
 
 	// determine what type of tag it is.
-	group = toInt(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]);
+	group = toUnsignedInt(groupBuff[1], groupBuff[0], groupBuff[3], groupBuff[2]);
 	ret = toTagDescription(group);
 
 	std::cout << "Tag: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << group;
@@ -157,11 +168,11 @@ unsigned int DICOMParser::parseLength(std::ifstream *f, Value_Representation vr)
 	// convert char array to unsigned int
 	if (lengthSize == DICOM::SIZE_OF_LENGTHA)
 	{
-		length = toInt(lengthBuff[1], lengthBuff[0]);
+		length = toUnsignedInt(lengthBuff[1], lengthBuff[0]);
 	}
 	else
 	{
-		length = toInt(lengthBuff[3], lengthBuff[2], lengthBuff[1], lengthBuff[0]);
+		length = toUnsignedInt(lengthBuff[3], lengthBuff[2], lengthBuff[1], lengthBuff[0]);
 	}
 
 	std::cout << "Length: " << std::dec << length << std::endl;
@@ -169,6 +180,34 @@ unsigned int DICOMParser::parseLength(std::ifstream *f, Value_Representation vr)
 	// clean up
 	delete lengthBuff;		
 	return length;
+}
+
+bool DICOMParser::parseImage(std::ifstream *f, DICOM *d)
+{
+	std::cout << "--- PARSING IMAGE" << std::endl;
+
+	// check to see if null parameters where passed in
+	if (!isValid(f, d)) 
+	{
+		std::cout << "ERROR: Invalid parameter passed in" << std::endl;
+		return false;
+	}
+
+	// parse the tag description
+	Tag_Description td;
+	td = parseGroup(f);
+
+	if (td != PIXEL_DATA)
+	{
+		std::cout << "ERROR: You said you were parsing the image!" << std::endl;
+		return false;
+	}
+
+	// parse the value representation
+	Value_Representation vr;
+	vr = parseValueRepresentation(f);
+
+	return true;
 }
 
 bool DICOMParser::parsePreamble(std::ifstream *f, DICOM *d)
@@ -235,6 +274,7 @@ bool DICOMParser::parseSequence(std::ifstream *f, Sequence *s)
 	// only sequences can be parsed by this process
 	if (vr != SQ)
 	{
+		std::cout << "ERROR: You said you were parsing a sequence!" << std::endl;
 		return false;
 	}
 
@@ -375,7 +415,7 @@ Value_Representation DICOMParser::parseValueRepresentation(std::ifstream *f)
 	f->read(vrBuff, DICOM::SIZE_OF_VR);
 
 	// parse the value representation
-	value = toInt(vrBuff[0], vrBuff[1]);
+	value = toUnsignedInt(vrBuff[0], vrBuff[1]);
 	vr = toValueRepresentation(value);
 
 	std::cout << "Value Representation: " << "0x" << std::setfill('0') << std::hex <<  std::setw(8) << value;
@@ -383,34 +423,6 @@ Value_Representation DICOMParser::parseValueRepresentation(std::ifstream *f)
 
 	delete vrBuff;
 	return vr;
-}
-
-int DICOMParser::toInt(char c0, char c1)
-{
-	//@TODO: There has got to be a more elegant way
-	//@TODO: Check that eindianess is correct
-
-	int val = 0x00000000;
-	val |= c0 << 8 | c1;
-
-	return val;
-}
-
-int DICOMParser::toInt(char c0, char c1, char c2, char c3)
-{
-	//@TODO: There has got to be a more elegant way
-	//@TODO: Check that eindianess is correct
-
-	unsigned int val = 0;
-	unsigned char charArr[4] = {c0, c1, c2, c3};
-
-	for (int i = 0; i < 4; i++)
-	{
-		val = val << 8;
-		val += charArr[i];
-	}
-
-	return val;
 }
 
 Tag_Description DICOMParser::toTagDescription(int value)

@@ -60,18 +60,22 @@ Value_Representation Tag::getValueRepresentation() const
 
 unsigned long Tag::getValueUL() const
 {
-	unsigned long ul = 0;
-	
-	if (length_ != sizeof(unsigned long))
+	unsigned int i = 0;
+
+	if (length_ == 2)
 	{
-		// @TODO: some sort of exception
-		std::cout << "Unsigned long is " << sizeof(unsigned long) << " but length is " << length_ << std::endl;
-		return 0;
+		i = toUnsignedInt(value_[1], value_[0]);
+	}
+	else if (length_ == 4)
+	{
+		i = toUnsignedInt(value_[3], value_[2], value_[1], value_[0]);
+	}
+	else
+	{
+		std::cout << "ERROR: Int will not fit in a size" << std::endl;
 	}
 
-	memcpy(&ul, value_, sizeof(unsigned long));
-
-	return ul;
+	return i;
 }
 
 /*-----------------------------------------------------------------------------
@@ -136,8 +140,12 @@ std::string Tag::valueToString()
 		break;
 
 	case AE:
+	case AS:
 	case CS:
+	case DS:
+	case IS:
 	case LO:
+	case LT:
 	case OB:
 	case PN:
 	case SH:
@@ -148,53 +156,80 @@ std::string Tag::valueToString()
 		}
 		
 		break;
-
 	case DA:
-		str += "Y: ";
-
-		for (int i = 0; i < 4; i++)
-		{
-			str += *(value_ + i);
-		}
-
-		str += " M: ";
-
-		for (int i = 0; i < 2; i++)
-		{
-			str += *(value_ + 4 + i);
-		}
-
-		str += " D: ";
-
-		for (int i = 0; i < 2; i++)
-		{
-			str += *(value_ + 6 + i);
-		}
-		
-		break;
-
+		return valueToDateString();
 	case TM:
-		str += "H: ";
+		return valueToTimeString();
+	case US:
+		return valueToUnsignedShortString();
+	}
 
-		for (int i = 0; i < 2; i++)
-		{
-			str += *(value_ + i);
-		}
+	return str;
+}
 
-		str += " M: ";
+std::string Tag::valueToDateString()
+{
+	std::string str = "";
 
-		for (int i = 0; i < 2; i++)
-		{
-			str += *(value_ + 2 + i);
-		}
+	str += "Y: ";
 
-		str += " S: ";
+	for (int i = 0; i < 4; i++)
+	{
+		str += *(value_ + i);
+	}
 
-		for (int i = 0; i < 9; i++)
-		{
-			str += *(value_ + 4 + i);
-		}
-		break;
+	str += " M: ";
+
+	for (int i = 0; i < 2; i++)
+	{
+		str += *(value_ + 4 + i);
+	}
+
+	str += " D: ";
+
+	for (int i = 0; i < 2; i++)
+	{
+		str += *(value_ + 6 + i);
+	}
+
+	return str;
+}
+
+std::string Tag::valueToTimeString()
+{
+	std::string str = "";
+
+	str += "H: ";
+
+	for (int i = 0; i < 2; i++)
+	{
+		str += *(value_ + i);
+	}
+
+	str += " M: ";
+
+	for (int i = 0; i < 2; i++)
+	{
+		str += *(value_ + 2 + i);
+	}
+
+	str += " S: ";
+
+	for (int i = 0; i < 9; i++)
+	{
+		str += *(value_ + 4 + i);
+	}
+
+	return str;
+}
+
+std::string Tag::valueToUnsignedShortString()
+{
+	std::string str = "";
+
+	for (unsigned int i = 0; i < length_; i+=2)
+	{
+		str += "\\" + std::to_string(toUnsignedInt(value_[i+1], value_[i])) + " ";
 	}
 
 	return str;
